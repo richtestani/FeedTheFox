@@ -17,9 +17,17 @@ if($datafeed->order('order_total') > 200) {
 
 $details = $datafeed->details();
 
-if( !$datafeed->isCustomer() ) {
+if( $datafeed->isCustomer() ) {
     
-    //email discount for becoming a member
+    //follow up email
+}
+
+if( $datafeed->isGuest() ) {
+    //email discount offering to become a member
+}
+
+if( $datafeed->hasDiscounts() ) {
+    //further handle discount
 }
 
 

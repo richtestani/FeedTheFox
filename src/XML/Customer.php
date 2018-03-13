@@ -81,4 +81,9 @@ class Customer {
     {
         return ($this->customer->get('customer_id') > 0) true : false;
     }
+    
+    public function isGuest()
+    {
+        return ($this->customer->get('customer_id') == 0) true : false;
+    }
 }

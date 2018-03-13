@@ -87,7 +87,14 @@ class DataFeed {
         return $this->customer->isCustomer();
     }
     
+    public function isGuest()
+    {
+        return $this->customer->isGuest();
+    }
     
+    /**
+    ** Discount Methods
+    */
     public function hasDiscounts()
     {
         return ($this->discounts->get()->count() > 0) ? true : false;
