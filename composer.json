@@ -1,0 +1,22 @@
+{
+    "name": "richtestani/feedthefox",
+    "description": "A FoxyCart Datafeed Package",
+    "type": "package",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Richard Testani",
+            "email": "richtestani@mac.com"
+        }
+    ],
+    "require" : {
+        
+      "illuminate/collection" : "*"
+    },
+    "minimum-stability": "dev",
+    "autoload" : {
+      "ps-4" : {
+        "RichTestani\\FeedTheFox\\" : "src/"
+      }
+    }
+}
