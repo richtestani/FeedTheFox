@@ -2,6 +2,8 @@
 	
 namespace RichTestani\FeedTheFox;
 
+use RichTestani\FeedTheFox\DataTypes;
+
 /**
     The main Datafeed class which helps generate individual collections of data,
     for the FeedTheFox package.
@@ -10,73 +12,71 @@ namespace RichTestani\FeedTheFox;
     and will require the rc4crpyt & laravel collection libraries.
     
     Currently, this library is designed with the XML implementation
-    of FoxyCarts datafeed, but may be updated for JSON support.s
+    of FoxyCarts datafeed, but may be updated for JSON support.
 */
-
-use RichTestani\FeedTheFox\Encryption\rc4crypt;
-use RichTestani\FeedTheFox\XML;
 
 class DataFeed {
 	
 	protected $apikey;
 	protected $endpoint;
 	protected $response;
-	protected $parser;
+	protected $parse;
+    protected $type;
     
-    protected $error;
+    protected $error = null;
     
     protected $transactions;
     protected $order;
     protected $customer;
-	
-	public function __construct($key)
+	protected $shipping;
+    protected $custom;
+    
+    protected $datatypes = ['XML', 'JSON'];
+    protected $nodes = ['Customers', 'Order', 'Transactions', 'Discounts', 'Shipping', 'CustomFields'];
+    
+	public function __construct($config)
 	{
+        
+        extract($config);
         $this->apikey = $key;
+        $this->type = 'XML';
+
 	}
     
-    public function decrypt($encrypted)
+    public function setDataType($type)
     {
-        return rc4crypt::decrypt($this->apikey, urldecode($encrypted));
-    }
-    
-    public function encrypt($data)
-    {
-        $data = rc4crypt::encrypt($this->apikey, $data);
-        return urlencode($data);
-    }
-    
-    public function process($xml)
-    {
-        
-        $decrypted = $this->decrypt($xml['FoxyData']);
-
-        $this->parser = simplexml_load_string($decrypted, null, LIBXML_NOCDATA);
-        
-        $this->transactions = $this->parser->transactions;
-        
-        //Order
-        $this->order = new XML\Order($this->transactions);
-        
-        //Details
-        $this->details = new XML\Transactions($this->transactions[0]->transaction->transaction_details, $this->order->get('id'), $this->order->get('customer_id'));
-        
-        //Customers
-        $this->customer = new XML\Customer($this->transactions[0]->transaction);
-        
-        //Discounts
-        $this->discounts = new XML\Discounts($this->transactions[0]->transaction->discounts, $this->order->get('id'), $this->order->get('customer_id'));
-    }
-    
-    
-    public function isFoxy($data)
-    {
-        if(!array_key_exists('FoxyData', $data)) {
-            $this->error = 'FoxyData not present';
-            return false;
+        if(!in_array($type, $this->datatypes)) {
+            trigger_error($type . ' : data type not supported');
         }
         
-        return true;
+        $this->type = $type;
     }
+    
+    public function addNode($name)
+    {
+        $this->nodes[] = $name;
+    }
+    
+    
+    
+    public function process()
+    {
+        
+        $class = "RichTestani\\FeedTheFox\\DataTypes\\".$this->type;
+        
+        $datatype = new $class($this->apikey);
+        
+        $datatype->process($this->nodes);
+        
+        
+        
+        
+        //Custom Fields
+        
+        //Shipping
+
+    }
+    
     
     /**
     ** Customer Methods
@@ -132,9 +132,14 @@ class DataFeed {
         return $this->details->get();
     }
     
-    public function discounts()
+    public function discounts($name = null)
     {
-        return $this->discounts->get();
+        return $this->discounts->get($name);
+    }
+    
+    public function custom($name = null)
+    {
+        return $this->custom->get($name);
     }
     
     public function getError()
