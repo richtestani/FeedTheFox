@@ -11,10 +11,10 @@ class Transactions implements iModel {
     protected $transactions;
 
     
-    public function __construct($data)
+    public function __construct($processor)
     {
         
-        $this->transactions = new Collection($data);
+        $this->transactions = new Collection($processor->get());
         
     }
     

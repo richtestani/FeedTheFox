@@ -11,10 +11,10 @@ class Order implements iModel {
     protected $order;
 
     
-    public function __construct($data)
+    public function __construct($processor)
     {
         
-        $this->order = new Collection($data);
+        $this->order = new Collection($processor->get());
         
     }
     

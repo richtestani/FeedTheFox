@@ -11,10 +11,10 @@ class Shipping implements iModel {
     protected $shipping;
 
     
-    public function __construct($data)
+    public function __construct($processor)
     {
         
-        $this->shipping = new Collection($data);
+        $this->shipping = new Collection($processor->get());
         
     }
     

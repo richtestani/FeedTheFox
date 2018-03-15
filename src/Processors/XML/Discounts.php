@@ -24,12 +24,7 @@ class Discounts {
 		}
     }
     
-    public function collection()
-    {
-        return $this->discounts;
-    }
-    
-    public function get($property = null)
+    public function get()
     {
         return $this->discounts;
     }

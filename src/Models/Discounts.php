@@ -11,10 +11,10 @@ class Discounts implements iModel {
     protected $discounts;
 
     
-    public function __construct($data)
+    public function __construct($processor)
     {
         
-        $this->discounts = new Collection($data);
+        $this->discounts = new Collection($processor->get());
         
     }
     

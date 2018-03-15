@@ -11,10 +11,10 @@ class Details implements iModel {
     protected $details;
 
     
-    public function __construct($data)
+    public function __construct($processor)
     {
         
-        $this->details = new Collection($data);
+        $this->details = new Collection($processor->get());
         
     }
     

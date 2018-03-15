@@ -20,13 +20,16 @@ class Shipping {
     protected $shipping_phone;
     protected $shipto_shipping_service_description;
 
-    public function __construct($data)
+    public function __construct($transaction)
     {
-        $this->shipping = new Collection();
+        
+        $shipping = [];
  
         foreach (get_object_vars($this) as $name => $prop) {
-            $this->shipping->put($name, (string)$data->$name);
+            $shipping[$name] = (string)$transaction->$name;
         }
+        
+        $this->shipping = new Collection($shipping);
         
     }
 
@@ -34,7 +37,7 @@ class Shipping {
     public function get($name = null)
     {
         
-        return (is_null($property)) ? $this->shipping : $this->$property;
+        return $this->shipping;
 
     }
 }

@@ -29,15 +29,14 @@ class Customer {
     public function __construct($transaction)
     {
 
-        
-        
         $customer = [];
+        
         foreach (get_object_vars($this) as $name => $prop) {
            $customer[$name] = (string)$transaction->$name;
         }
+        
         //setup a collection for easy access
         $this->customer = new Collection($customer);
-
         
     }
     
