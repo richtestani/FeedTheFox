@@ -55,4 +55,6 @@ To get the name of discount:
 $datafeed->discounts->get('name');
 ```
 
-* [Shipping](./shipping)
+* [Shipping](https://richtestani.github.io/FeedTheFox/shipping)
+* [Customer](https://richtestani.github.io/FeedTheFox/customer)
+* [Details](https://richtestani.github.io/FeedTheFox/details)
