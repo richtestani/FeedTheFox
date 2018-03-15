@@ -1,6 +1,6 @@
 <?php
 
-namespace RichTestani\FeedTheFox\XML;
+namespace RichTestani\FeedTheFox\Processors\XML;
 
 use Illuminate\Support\Collection;
 
@@ -20,7 +20,7 @@ class Discount {
     public function __construct($discount, $transaction_id, $customer_id)
     {
         
-        $discount = $discount->discount;
+        $discount = $discount;
         
         $this->code                             = (string)$discount->code;
         $this->name                             = (string)$discount->name;

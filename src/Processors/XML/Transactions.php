@@ -1,6 +1,6 @@
 <?php
 
-namespace RichTestani\FeedTheFox\XML;
+namespace RichTestani\FeedTheFox\Processors\XML;
 
 use Illuminate\Support\Collection;
 
@@ -13,7 +13,9 @@ class Transactions {
     {
         $this->transactions = new Collection();
         
-        foreach($data as $t) {
+        $transactions = $data->transaction_details;
+
+        foreach($transactions as $t) {
             
             $this->transactions->push( new Transaction($t->transaction_detail, $transaction_id, $customer_id));
             

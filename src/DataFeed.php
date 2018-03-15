@@ -2,7 +2,8 @@
 	
 namespace RichTestani\FeedTheFox;
 
-use RichTestani\FeedTheFox\DataTypes;
+use RichTestani\FeedTheFox\Processors\DataProcessorFactory;
+use RichTestani\FeedTheFox\Models;
 
 /**
     The main Datafeed class which helps generate individual collections of data,
@@ -18,134 +19,56 @@ use RichTestani\FeedTheFox\DataTypes;
 class DataFeed {
 	
 	protected $apikey;
-	protected $endpoint;
-	protected $response;
-	protected $parse;
-    protected $type;
+	protected $processor;
     
-    protected $error = null;
+    private $factory;
     
-    protected $transactions;
-    protected $order;
-    protected $customer;
-	protected $shipping;
-    protected $custom;
     
-    protected $datatypes = ['XML', 'JSON'];
-    protected $nodes = ['Customers', 'Order', 'Transactions', 'Discounts', 'Shipping', 'CustomFields'];
-    
-	public function __construct($config)
-	{
-        
-        extract($config);
-        $this->apikey = $key;
-        $this->type = 'XML';
-
-	}
-    
-    public function setDataType($type)
+    public function __construct($config, $datatype = 'xml')
     {
-        if(!in_array($type, $this->datatypes)) {
-            trigger_error($type . ' : data type not supported');
+        
+        $this->datatype = strtoupper($datatype);
+        
+        $this->factory = new DataProcessorFactory;
+        
+        $config['datatype'] = $this->datatype;
+        
+        $this->processor = $this->factory->make($config);
+        
+    }
+    
+    public function process($data = null)
+    {
+        $this->processor->process($data);
+        
+        $foxydata  = $this->processor->get();
+        
+        foreach($foxydata as $model => $data) {
+            
+            $modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $model)));
+            $class = __NAMESPACE__."\\Models\\".$modelName;
+            
+            $this->$model = new $class($data);
+            
         }
         
-        $this->type = $type;
     }
     
-    public function addNode($name)
+    public function __call($name, $args)
     {
-        $this->nodes[] = $name;
-    }
-    
-    
-    
-    public function process()
-    {
+        $c = $this->customer->get('customer_id');
         
-        $class = "RichTestani\\FeedTheFox\\DataTypes\\".$this->type;
-        
-        $datatype = new $class($this->apikey);
-        
-        $datatype->process($this->nodes);
-        
-        
-        
-        
-        //Custom Fields
-        
-        //Shipping
+        if(property_exists($this, $name)) {
+            
+            if((count($args) >= 0 && count($args) < 2)) {
+                $property = $args[0];
+                return $this->$name->get($property);
+            }
+            
+            
+        }
 
     }
-    
-    
-    /**
-    ** Customer Methods
-    */
-    
-    public function isCustomer()
-    {
-        return $this->customer->isCustomer();
-    }
-    
-    public function isGuest()
-    {
-        return $this->customer->isGuest();
-    }
-    
-    /**
-    ** Discount Methods
-    */
-    public function hasDiscounts()
-    {
-        return ($this->discounts->get()->count() > 0) ? true : false;
-    }
-    
-    
-    /**
-        Datafeed Collections
-        ======================
-        Order
-            -- Collects the basics of an order
-            
-        Customer
-            -- Collects just the customer details
-            
-        Details
-            -- Collects transaction details and transation option details
-        
-        Discounts
-            -- Collects discount details
-    */
-    
-    public function customer($property = null)
-    {
-        return $this->customer->get($property);
-    }
-    
-    public function order($property = null)
-    {
-        return $this->order->get($property);
-    }
-    
-    public function details()
-    {
-        return $this->details->get();
-    }
-    
-    public function discounts($name = null)
-    {
-        return $this->discounts->get($name);
-    }
-    
-    public function custom($name = null)
-    {
-        return $this->custom->get($name);
-    }
-    
-    public function getError()
-    {
-        return $this->error;
-    }
-	
+
 }
 ?>

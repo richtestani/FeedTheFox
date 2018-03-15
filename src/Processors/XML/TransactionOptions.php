@@ -1,6 +1,6 @@
 <?php
 
-namespace RichTestani\FeedTheFox\XML;
+namespace RichTestani\FeedTheFox\Processors\XML;
 
 use Illuminate\Support\Collection;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace RichTestani\FeedTheFox\XML;
+namespace RichTestani\FeedTheFox\Processors\XML;
 
 use Illuminate\Support\Collection;
 
@@ -12,17 +12,14 @@ class Discounts {
     
     public function __construct($discounts, $transaction_id, $customer_id)
     {
-        if(!empty($data)) {
-            
-        }
-        
+
         $this->discounts = new Collection();
         $this->transaction_id = $transaction_id;
         $this->customer_id = $customer_id;
         
-        foreach($discounts as $d) {
-            
-            $this->discounts->push(new Discount($d,$this->transaction_id, $this->customer_id));
+        foreach($discounts->discounts as $d) {
+
+            $this->discounts->push(new Discount($d->discount, $this->transaction_id, $this->customer_id));
 
 		}
     }
