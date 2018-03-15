@@ -46,6 +46,11 @@ class Details implements iModel {
         
     }
     
+    public function hasOptions()
+    {
+        return (count($this->options) > 0) ? true : false; 
+    }
+    
     public function options()
     {
         return $this->options;

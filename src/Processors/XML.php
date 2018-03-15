@@ -52,6 +52,7 @@ class XML implements iDataProcessor {
             
         }
         
+        //we should be foxy by now
         $data = $data['FoxyData'];
         
         //allowed unexcrypted if you want to test a file

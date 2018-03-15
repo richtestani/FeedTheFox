@@ -33,6 +33,11 @@ class CustomFields implements iModel {
         
     }
     
+    public function hasCustomFields()
+    {
+        return ($this->custom->count() > 0) ? true : false;
+    }
+    
     public function find($property, $value) {
         
         return $this->custom->first(function($index, $el) use ($property, $value) {

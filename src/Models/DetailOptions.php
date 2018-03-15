@@ -35,6 +35,11 @@ class DetailOptions implements iModel {
         }
         
     }
+    
+    public function hasOptions()
+    {
+        return ($this->options->count() > 0) ? true : false;
+    }
 
     
     public function options($property = null)
