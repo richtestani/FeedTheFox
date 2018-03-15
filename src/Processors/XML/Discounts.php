@@ -10,18 +10,24 @@ class Discounts {
     protected $transaction_id;
     protected $customer_id;
     
-    public function __construct($discounts, $transaction_id, $customer_id)
+    public function __construct($transaction, $transaction_id, $customer_id)
     {
 
-        $this->discounts = new Collection();
+        
         $this->transaction_id = $transaction_id;
+        
         $this->customer_id = $customer_id;
         
-        foreach($discounts->discounts as $d) {
-
-            $this->discounts->push(new Discount($d->discount, $this->transaction_id, $this->customer_id));
+        $discounts = [];
+        
+        foreach($transaction->discounts as $d) {
+            
+            $discount = new Discount($d->discount, $this->transaction_id, $this->customer_id);
+            $discounts[] = $discount->get();
 
 		}
+        
+        $this->discounts = new Collection($discounts);
     }
     
     public function get()

@@ -71,4 +71,10 @@ class Order {
         return $this->order;
     }
     
+    public function getId()
+    {
+        return $this->order->get('id');
+    }
+    
+    
 }

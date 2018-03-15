@@ -51,8 +51,8 @@ class Discount {
         $this->discount = new Collection($discount);
     }
     
-    public function get($property = null)
+    public function get()
     {
-        return (is_null($property)) ? $this->collection() : $this->$property;
+        return $this->discount;
     }
 }

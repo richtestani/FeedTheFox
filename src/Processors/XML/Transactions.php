@@ -9,17 +9,19 @@ class Transactions {
     protected $transactions = [];
     
     
-    public function __construct($data, $transaction_id, $customer_id)
+    public function __construct($transaction, $transaction_id, $customer_id)
     {
-        $this->transactions = new Collection();
         
-        $transactions = $data->transaction_details;
+        $transactions = [];
 
-        foreach($transactions as $t) {
+        foreach($transaction->transaction_details as $t) {
             
-            $this->transactions->push( new Transaction($t->transaction_detail, $transaction_id, $customer_id));
+            $trans = new Transaction($t->transaction_detail, $transaction_id, $customer_id);
+            $transactions[] = $trans->get();
             
         }
+        
+        $this->transactions = new Collection($transactions);
     }
     
     public function numberOfTransactions()

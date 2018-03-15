@@ -70,10 +70,10 @@ class XML implements iDataProcessor {
         //Parse the XML into logical portions
         $customer = new XML\Customer($transaction);
         $order = new XML\Order($transaction);
-        $details = new XML\Transactions($transaction, $order->get('id'), $customer->get('customer_id'));
+        $details = new XML\Transactions($transaction, $order->getId(), $customer->getId());
         $custom = new XML\CustomFields($transaction);
         $shipping = new XML\Shipping($transaction);
-        $discounts = new XML\Discounts($transaction, $order->get('id'), $customer->get('customer_id'));
+        $discounts = new XML\Discounts($transaction, $order->getId(), $customer->getId());
         
         $this->foxydata = [
             'customer'              => $customer,
@@ -133,5 +133,6 @@ class XML implements iDataProcessor {
             $this->encrypted = $config['encrypted'];
         }
     }
+    
     
 }

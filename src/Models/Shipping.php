@@ -26,4 +26,36 @@ class Shipping implements iModel {
         
     }
     
+    public function hasShippingName($name)
+    {
+        return (is_null($this->shipping->get('shipto_shipping_service_description'))) ? false : true;
+    }
+    
+    /**
+    * Requires a number
+    */
+    public function shippingCostIsGreaterThan($amount)
+    {
+        
+        if(!is_numeric($amount)) {
+            trigger_error("shippingCostIsGreaterThan require number");
+        }
+        
+        $ship_total = $this->shipping->get('shipping_total');
+        
+        return ($ship_total > $amount) ? true : false;
+    }
+    
+    public function shippingCostIsLessThan($amount)
+    {
+        
+        if(!is_numeric($amount)) {
+            trigger_error("shippingCostIsLessThan require number");
+        }
+        
+        $ship_total = $this->shipping->get('shipping_total');
+        
+        return ($ship_total < $amount) ? true : false;
+    }
+    
 }

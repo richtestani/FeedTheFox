@@ -22,15 +22,36 @@ class Discounts implements iModel {
     public function get($property = null)
     {
         
-        return (is_null($property)) ? $this->discounts->all() : $this->discounts->get($property);
+        if( is_null($property) ) {
+            
+            return $this->discounts;
+            
+        }
+        
+        
+        return $this->discounts->firstWhere($property);
+        
+        
         
     }
     
     public function hasDiscount()
     {
-        
        
+        return ($this->discounts->count() == 0) ? false : true;
+       
+    }
+    
+    public function numDiscounts()
+    {
         
+        return $this->discounts->count();
+    }
+    
+    public function hasCode($code)
+    {
+        $coupon = $this->discounts->where('code', $code);
+        return $coupon;
     }
     
     

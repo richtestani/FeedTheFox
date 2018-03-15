@@ -37,7 +37,7 @@ class Customer implements iModel {
     public function get($property = null)
     {
 
-        return (is_null($property)) ? $this->customer->all() : $this->customer->get($property);
+        return (is_null($property)) ? $this->customer : $this->customer->get($property);
         
     }
     

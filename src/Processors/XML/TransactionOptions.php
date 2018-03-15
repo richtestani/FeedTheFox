@@ -26,17 +26,10 @@ class TransactionOptions {
     }
     
     
-    public function get($name = null)
+    public function get()
     {
         
-        if(is_null($name)) {
-            return $this->options;
-        }
-        
-        //find index by name of option
-        $item = $this->options->firstWhere('product_option_name', $name);
-
-        return (!is_null($item)) ? new Collection($item) : null;
+        return $this->options;
         
     }
 }

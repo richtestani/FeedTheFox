@@ -45,4 +45,9 @@ class Customer {
         return $this->customer;
         
     }
+    
+    public function getId()
+    {
+        return $this->customer->get('customer_id');
+    }
 }

@@ -19,6 +19,7 @@ class Shipping {
     protected $shipping_country;
     protected $shipping_phone;
     protected $shipto_shipping_service_description;
+    protected $shipping_total;
 
     public function __construct($transaction)
     {

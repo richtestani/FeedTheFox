@@ -39,56 +39,38 @@ class Transaction {
     protected $transaction_detail_options = [];
     
     
-    public function __construct($data, $transaction_id, $customer_id) {
-        
-        $transaction = $data[0];
+    public function __construct($details, $transaction_id, $customer_id) {
         
         $this->transaction_id = $transaction_id;
         $this->customer_id = $customer_id;
         
-        foreach($transaction as $k => $d) {
+        $transaction = [];
+        
+        foreach($details[0] as $k => $d) {
             
             if(property_exists($this, $k)) {
                 $this->$k = (string)$d;
+                $transaction[$k] = $this->$k;
             }
             
         }
-        
-        $this->transaction_detail_options = new TransactionOptions($transaction->transaction_detail_options);
-        
-        $this->collection();
 
-    }
-    
-    public function collection()
-    {
-        $transaction = [];
+        $options = new TransactionOptions($details[0]->transaction_detail_options);
+        $this->transaction_detail_options = $options;
+        $transaction['transaction_detail_options'] = $this->transaction_detail_options->get();
         
-        foreach (get_object_vars($this) as $name => $prop) {
-
-           if(!is_object($prop)) {
-               $transaction[$name] = (string)$prop;
-           } else {
-               $transaction[$name] = $prop;
-           }
-            
-        }
-        
-        $transactions['transaction_id'] = $this->transaction_id;
-        $transactions['customer_id'] = $this->customer_id;
-        
+        //append ds for convenience
+        $transaction['transaction_id'] = $this->transaction_id;
+        $transaction['customer_id'] = $this->customer_id;
         
         $this->transaction = new Collection($transaction);
+
     }
-    
-    public function options()
-    {
-        
-    }
+
     
     public function get($property = null)
     {
-        return (is_null($property)) ? $this->transaction : $this->$property;
+        return $this->transaction;
     }
     
     

@@ -22,7 +22,7 @@ class Order implements iModel {
     public function get($property = null)
     {
         
-        return (is_null($property)) ? $this->order->all() : $this->order->get($property);
+        return (is_null($property)) ? $this->order : $this->order->get($property);
         
     }
     

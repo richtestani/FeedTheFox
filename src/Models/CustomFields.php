@@ -11,26 +11,51 @@ class CustomFields implements iModel {
     protected $custom;
 
     
-    public function __construct($data)
+    public function __construct($processor)
     {
         
-        $this->custom = new Collection($data);
-        
+        $this->custom = new Collection($processor->get());
+
     }
     
 
     public function get($property = null)
     {
-        
-        if(is_null($name)) {
-            return $this->custom->all();
+        if(is_null($property)) {
+            return $this->custom;
         }
-
-        //find index by name of option
-        $item = $this->custom->firstWhere('custom_field_name', $name);
-
-        return (!is_null($item)) ? $item : null;
+        return $this->custom;
+    }
+    
+    public function where($name, $value)
+    {
+        $item = $this->custom->get($name);
         
+    }
+    
+    public function find($property, $value) {
+        
+        return $this->custom->first(function($index, $el) use ($property, $value) {
+           
+            echo ' looking for '.$property.'<br>';
+            echo 'with a value of '.$value.'<br>';
+            if( $el[$property] == $value ) {
+                return $el;
+            }
+            
+        });
+    }
+    
+        
+    public function isHidden($name)
+    {
+        $field = $this->get($name);
+        
+        if(!is_null($field) && $field['custom_field_is_hidden']) {
+            return true;
+        }
+        
+        return false;
     }
     
     

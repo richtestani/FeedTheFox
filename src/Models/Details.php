@@ -22,8 +22,14 @@ class Details implements iModel {
     public function get($property = null)
     {
         
-        return (is_null($property)) ? $this->details->all() : $this->details->get($property);
+        return (is_null($property)) ? $this->details : $this->details->get($property);
         
+    }
+    
+    public function options($property = null)
+    {
+        echo  $this->details->get('product_name');
+        echo 'getting options';
     }
     
 }

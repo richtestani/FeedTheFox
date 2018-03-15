@@ -25,30 +25,12 @@ class CustomFields {
             $this->custom->push($custom);
         }
     }
-    
-    public function isHidden($name)
-    {
-        $field = $this->get($name);
-        
-        if(!is_null($field) && $field['custom_field_is_hidden']) {
-            return true;
-        }
-        
-        return false;
-    }
 
 
     public function get($name = null)
     {
 
-        if(is_null($name)) {
-            return $this->custom;
-        }
-
-        //find index by name of option
-        $item = $this->custom->firstWhere('custom_field_name', $name);
-
-        return (!is_null($item)) ? new Collection($item) : null;
+        return $this->custom;
 
     }
 }

@@ -43,12 +43,12 @@ class DataFeed {
         
         $foxydata  = $this->processor->get();
         
-        foreach($foxydata as $model => $data) {
+        foreach($foxydata as $model => $processor) {
             
             $modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $model)));
             $class = __NAMESPACE__."\\Models\\".$modelName;
             
-            $this->$model = new $class($data);
+            $this->$model = new $class($processor);
             
         }
         
@@ -56,13 +56,14 @@ class DataFeed {
     
     public function __call($name, $args)
     {
-        $c = $this->customer->get('customer_id');
         
         if(property_exists($this, $name)) {
             
             if((count($args) >= 0 && count($args) < 2)) {
+                
                 $property = $args[0];
                 return $this->$name->get($property);
+                
             }
             
             
