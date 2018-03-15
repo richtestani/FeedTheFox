@@ -1,22 +1,24 @@
 {
     "name": "richtestani/feedthefox",
-    "description": "A FoxyCart Datafeed Package",
     "type": "package",
-    "license": "mit",
+    "description": "A easy way to work with FoxyCarts datafeed.",
+    "keywords": ["foxycart", "post-processing"],
+    "homepage": "https://github.com/richtestani/FeedTheFox",
+    "license": "MIT",
     "authors": [
         {
             "name": "Richard Testani",
-            "email": "richtestani@mac.com"
+            "email": "richtestani@mac.com",
+            "homepage": "http:richtestani.com",
+            "role": "Developer"
         }
     ],
-    "require" : {
-        
-      "illuminate/support" : "*"
+    "require": {
+        "php": ">=5.4"
     },
-    "minimum-stability": "dev",
-    "autoload" : {
-      "ps-4" : {
-        "RichTestani\\FeedTheFox\\" : "src/"
-      }
+    "autoload": {
+        "psr-4": {
+            "RichTestani\\FeedTheFox\\": "src/"
+        }
     }
 }
