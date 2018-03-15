@@ -36,9 +36,7 @@ class CustomFields implements iModel {
     public function find($property, $value) {
         
         return $this->custom->first(function($index, $el) use ($property, $value) {
-           
-            echo ' looking for '.$property.'<br>';
-            echo 'with a value of '.$value.'<br>';
+
             if( $el[$property] == $value ) {
                 return $el;
             }

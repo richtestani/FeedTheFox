@@ -57,7 +57,7 @@ class Transaction {
 
         $options = new TransactionOptions($details[0]->transaction_detail_options);
         $this->transaction_detail_options = $options;
-        $transaction['transaction_detail_options'] = $this->transaction_detail_options->get();
+        $transaction['transaction_detail_options'] = $this->transaction_detail_options;
         
         //append ds for convenience
         $transaction['transaction_id'] = $this->transaction_id;

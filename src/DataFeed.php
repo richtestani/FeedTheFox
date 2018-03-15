@@ -20,6 +20,7 @@ class DataFeed {
 	
 	protected $apikey;
 	protected $processor;
+    protected $models;
     
     private $factory;
     
@@ -49,6 +50,7 @@ class DataFeed {
             $class = __NAMESPACE__."\\Models\\".$modelName;
             
             $this->$model = new $class($processor);
+            $this->models[] = $modelName;
             
         }
         
@@ -56,16 +58,21 @@ class DataFeed {
     
     public function __call($name, $args)
     {
-        
+
         if(property_exists($this, $name)) {
             
-            if((count($args) >= 0 && count($args) < 2)) {
+            if((count($args) >= 1 && count($args) < 2)) {
                 
                 $property = $args[0];
                 return $this->$name->get($property);
                 
             }
             
+        }
+        
+        if(in_array(ucwords($name), $this->models)) {
+
+            return $this->$name;
             
         }
 
