@@ -22,7 +22,7 @@ use RichTestani\FeedTheFox;
 
 //new instance
 $datafeed = new DataFeed('my-foxy-api');
-$datafeed->process();
+$datafeed->process($_POST);
 
 if( $datafeed->order->transactionDeclined() ) {
     //mail me about this issue.
@@ -54,4 +54,4 @@ To get the name of discount:
 ```
 $datafeed->discounts->get('name');
 ```
-
+Read more in the [docs](https://richtestani.github.io/FeedTheFox/)
