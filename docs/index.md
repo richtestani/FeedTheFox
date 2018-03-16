@@ -1,6 +1,6 @@
 # FeedTheFox
 
-A FoxyCart Datafeed Package
+A FoxyCart Datafeed Package for PHP
 
 Use this package to handle post processing with FoxyCart.
 
@@ -13,6 +13,10 @@ this package makes it easier to work with the datafeed.
 Install with composer, or download this package.
 It does require laravel/collection to work.
 
+With this package you can run tests on your own machine, or use it to process live transactions.
+
+### This does not currently support multi-store or subscriptions, but will in updated versions.
+
 ```
 composer require richtestani/feedthefox:dev-master
 ```
@@ -20,13 +24,23 @@ composer require richtestani/feedthefox:dev-master
 ```
 use RichTestani\FeedTheFox;
 
-//new instance
-$datafeed = new DataFeed('my-foxy-api');
-$datafeed->process();
+$config = [
+    'key' => 'my-api-key',
+    'encrypted' => false //set to false only if you are passing an xml string, otherwise you can remove this key
+];
 
-if( $datafeed->order->transactionDeclined() ) {
-    //mail me about this issue.
-}
+//new instance
+$datafeed = new DataFeed($config);
+
+//pass in the post array
+$datafeed->process($_POST);
+
+//get all of the customer data
+$customer = $datafeed->customer();
+
+//show just some data
+echo $datafeed->customer->get('id');
+echo $datafeed->customer->get('customer_first_name');
 
 ```
 

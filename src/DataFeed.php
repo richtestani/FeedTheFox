@@ -32,6 +32,12 @@ class DataFeed {
         
         $this->factory = new DataProcessorFactory;
         
+        if(!is_array($config)) {
+            
+            $config['key'] = $config;
+            
+        }
+        
         $config['datatype'] = $this->datatype;
         
         $this->processor = $this->factory->make($config);
