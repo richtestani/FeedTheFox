@@ -38,9 +38,28 @@ $datafeed->process($_POST);
 //get all of the customer data
 $customer = $datafeed->customer();
 
-//show just some data
+//verbose mothod of getting data
 echo $datafeed->customer->get('id');
 echo $datafeed->customer->get('customer_first_name');
+
+//show the order id
+echo $datafeed->order->get('id');
+
+You can get the object with the short hand method
+$order = $datafeed->order();
+echo $order->get('id');
+
+//you can also use the methods on the object
+if( $order->transactionDeclined() ) {
+    echo 'this transaction was devlined';
+}
+
+//show the transaction product names
+$names = $datafeed->details->get('product_name');
+
+foreach($names as $name) {
+    echo '<li>'.$name.'</li>';
+}
 
 ```
 

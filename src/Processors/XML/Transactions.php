@@ -31,12 +31,16 @@ class Transactions {
     
     public function numberOfTransactions()
     {
+        
         return $this->transactions->count();
+        
     }
     
     public function get()
     {
+        
         return $this->transactions;
+        
     }
     
 }

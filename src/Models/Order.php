@@ -28,14 +28,24 @@ class Order implements iModel {
     
     public function transactionDeclined()
     {
-        return (!$this->order->get('status')) ? true : false;
+        
+        return (!$this->order->get('status') == 'approved') ? true : false;
+        
     }
     
     public function transactionApproved()
     {
-        return ($this->order->get('status')) ? true : false;
+        
+        return ($this->order->get('status') == 'approved') ? true : false;
+        
     }
     
+    public function orderIsTest()
+    {
+        
+        return $this->order->get('is_test');
+        
+    }
     
 
 }

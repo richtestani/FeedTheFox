@@ -1,4 +1,4 @@
-# Cust
+# Customer
 
 The customer model contains everything related to customer.
 
