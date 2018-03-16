@@ -56,6 +56,11 @@ class DataFeed {
         
     }
     
+    public function toString()
+    {
+        return $this->processor->toString();
+    }
+    
     public function __call($name, $args)
     {
 

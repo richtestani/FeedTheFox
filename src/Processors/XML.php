@@ -88,6 +88,11 @@ class XML implements iDataProcessor {
 
     }
     
+    public function toString()
+    {
+        return $this->xml->asXML();
+    }
+    
     private function customer()
     {
         

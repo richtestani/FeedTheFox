@@ -36,27 +36,33 @@ class Transaction {
     protected $category_code;
     protected $product_delivery_type;
     
-    protected $transaction_detail_options = [];
+    protected $transaction_detail_options;
     
     
     public function __construct($details, $transaction_id, $customer_id) {
-        
+
         $this->transaction_id = $transaction_id;
         $this->customer_id = $customer_id;
         
         $transaction = [];
         
-        foreach($details[0] as $k => $d) {
+        $options = $details->transaction_detail_options;
+        
+        foreach($details as $k => $d) {
+            
+            
             
             if(property_exists($this, $k)) {
+                 
                 $this->$k = (string)$d;
                 $transaction[$k] = $this->$k;
+
             }
             
         }
+        
+        $this->transaction_detail_options = new TransactionOptions($options);
 
-        $options = new TransactionOptions($details[0]->transaction_detail_options);
-        $this->transaction_detail_options = $options;
         $transaction['transaction_detail_options'] = $this->transaction_detail_options;
         
         //append ds for convenience

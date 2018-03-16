@@ -13,11 +13,16 @@ class Transactions {
     {
         
         $transactions = [];
-
+        
         foreach($transaction->transaction_details as $t) {
             
-            $trans = new Transaction($t->transaction_detail, $transaction_id, $customer_id);
-            $transactions[] = $trans->get();
+            //each transaction detail
+            foreach($t as $detail) {
+                
+                $trans = new Transaction($detail, $transaction_id, $customer_id);
+                $transactions[] = $trans->get();
+                
+            }
             
         }
         

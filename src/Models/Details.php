@@ -16,6 +16,8 @@ class Details implements iModel {
     {
         
         $details = $processor->get();
+        $d = var_export($processor, true);
+        file_put_contents(__DIR__.'/details.txt', $d);
         $detail = [];
         $options = [];
         
@@ -37,13 +39,7 @@ class Details implements iModel {
 
     public function get($property = null)
     {
-        if( $this->details->count() == 1) {
-            return (is_null($property)) ? $this->details : $this->details->get($property);
-        } else {
-            return (is_null($property)) ? $this->details : $this->details->get($property);
-        }
-        
-        
+        return (is_null($property)) ? $this->details : $this->details->get($property);
     }
     
     public function hasOptions()
@@ -62,8 +58,6 @@ class Details implements iModel {
             return (is_array($property)) ? $this->details->only($property) : $this->details->pluck($property);
         });
     }
-    
-
     
     
 }

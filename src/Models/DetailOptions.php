@@ -58,6 +58,12 @@ class DetailOptions implements iModel {
         });
     }
     
+    public function optionEqualTo($name, $value) {
+        return $this->options->filter(function($item) use ($name, $value) {
+           return ($item[$name] == $value) ? true : false; 
+        });
+        
+    }
     
     
 }
