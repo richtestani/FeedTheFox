@@ -29,7 +29,7 @@ class TransactionOptions {
     public function get($property)
     {
         
-        return (is_null($property)) ? $this->options : $this->options->get($property);
+        return $this->options;
         
     }
     

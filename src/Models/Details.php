@@ -10,6 +10,8 @@ class Details implements iModel {
 
     protected $details;
     protected $options;
+    protected $numOptions = 0;
+    protected $numItems = 0;
 
     
     public function __construct($processor)
@@ -25,14 +27,23 @@ class Details implements iModel {
             
             $option = $d->pull('transaction_detail_options');
             $option = new DetailOptions($option);
+            
+            //count options
+            if($option->hasOptions()) {
+                $this->numOptions++;
+            }
+            
             $options[] = $option;
             $d->put('transaction_detail_options', $option);
-            $detail[] =  $d;
-
+            $detail =  $d;
+            $this->numItems++;
+            
+            $this->details[] = new Item($detail);
         }
         
-        $this->details = new Collection($detail);
-        $this->options = $options;
+
+        
+        $this->options = new Collection($options);
 
     }
     
@@ -42,23 +53,25 @@ class Details implements iModel {
         return (is_null($property)) ? $this->details : $this->details->get($property);
     }
     
+    public function numItems()
+    {
+        return $this->numItems;
+    }
+    
+    public function numOptions()
+    {
+        
+        return $this->numOptions;
+        
+    }
     public function hasOptions()
     {
-        return ($this->options->numOptions() > 0) : true : false; 
+        return ($this->numOptions > 0) ? true : false; 
     }
     
     public function options()
     {
         return $this->options;
-    }
-    
-    public function getAllValuesByProperty($property)
-    {
-        $item = $this->details->pluck($property)->filter(function($i) {
-            return (!empty($i));
-        });
-        
-        return $item->all();
     }
     
     

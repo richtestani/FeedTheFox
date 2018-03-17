@@ -10,7 +10,7 @@ For stores that require post processing orders (recording the order, emailing cu
 FeedTheFox makes it easier to work with the genereated feeds. 
 
 Currenly works with their XML feed with a sinle transaction.
-Updated will include subcriptions and mult-store feeds.
+*Updated will include subcriptions and mult-ship feeds.*
 
 Install with composer, or download this package.
 It does require laravel/collection to work.

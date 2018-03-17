@@ -7,35 +7,6 @@ The following properties are available with the `get()` method.
 
 * transaction
 
-* id
-* transaction_date
-
-* product_name
-* product_price
-* product_quantity
-* product_weight
-* product_code
-* parent_code
-* image
-* url
-* length
-* width
-* height
-* expires
-
-* sub_token_url
-* subscription_frequency
-* subscription_startdate
-* subscription_nextdate
-* subscription_enddate
-
-* is_future_line_item
-* shipto
-* category_description
-* category_code
-* product_delivery_type
-
-* transaction_detail_options
 
 The following methods are available to the detail model.
 
@@ -51,6 +22,16 @@ options()
 Returns all product options for all items
 
 ```
-getAllValuesByProperty($property)
+hasOptions()
 ```
-Returns all values given proptry name.
+Returns true if there are any options in this order
+
+```
+numItems()
+```
+Returns an intger of the number of items in this order
+
+```
+numOptions()
+```
+Returns an intefer for the number of options in this total order

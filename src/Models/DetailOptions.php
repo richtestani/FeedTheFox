@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 class DetailOptions implements iModel {
 
     protected $options;
+    protected $hasOptions = true;
 
     
     public function __construct($processor)
@@ -18,7 +19,12 @@ class DetailOptions implements iModel {
         $option= [];
         
         foreach($options as $o) {
+            //each collection
             $option[] = $o;
+        }
+
+        if(empty($options->all())) {
+            $this->hasOptions = false;
         }
         
         $this->options = new Collection($option);
@@ -29,11 +35,21 @@ class DetailOptions implements iModel {
     public function get($property = null)
     {
         if( $this->options->count() == 1) {
-            return (is_null($property)) ? $this->options->first() : $this->options->get($property);
+            return (is_null($property)) ? $this->options : $this->options->get($property);
         } else {
             return (is_null($property)) ? $this->options : $this->options->pluck($property);
         }
         
+    }
+    
+    public function hasOptions()
+    {
+        return $this->hasOptions;
+    }
+    
+    public function numOptions()
+    {
+        return $this->options->count();
     }
 
     
@@ -55,16 +71,8 @@ class DetailOptions implements iModel {
     
     public function optionEqualTo($name, $value) {
         return $this->options->filter(function($item) use ($name, $value) {
-            
            return ($item[$name] == $value) ? true : false;
-            
         });
-        
-    }
-    
-    public function numOptions() {
-        
-        return $this->options->count();
         
     }
     
