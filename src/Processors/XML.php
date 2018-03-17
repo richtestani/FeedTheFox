@@ -93,6 +93,11 @@ class XML implements iDataProcessor {
         return $this->xml->asXML();
     }
     
+    public function done()
+    {
+        die("foxy");
+    }
+    
     private function customer()
     {
         

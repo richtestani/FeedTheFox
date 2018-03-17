@@ -33,27 +33,4 @@ class TransactionOptions {
         
     }
     
-    public function numOptions() {
-        
-        return $this->options->count();
-        
-    }
-    
-    public function getAllOptionsNames()
-    {
-        $item = $this->details->pluck('product_option_name')->filter(function($i) {
-            return (!empty($i));
-        });
-        
-        return $item->all();
-    }
-    
-    public function getAllOptionsValues()
-    {
-        $item = $this->details->pluck('product_option_value')->filter(function($i) {
-            return (!empty($i));
-        });
-        
-        return $item->all();
-    }
 }

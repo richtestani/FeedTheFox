@@ -35,11 +35,6 @@ class DetailOptions implements iModel {
         }
         
     }
-    
-    public function hasOptions()
-    {
-        return ($this->options->count() > 0) ? true : false;
-    }
 
     
     public function options($property = null)
@@ -65,6 +60,30 @@ class DetailOptions implements iModel {
             
         });
         
+    }
+    
+    public function numOptions() {
+        
+        return $this->options->count();
+        
+    }
+    
+    public function getAllOptionsNames()
+    {
+        $item = $this->details->pluck('product_option_name')->filter(function($i) {
+            return (!empty($i));
+        });
+        
+        return $item->all();
+    }
+    
+    public function getAllOptionsValues()
+    {
+        $item = $this->details->pluck('product_option_value')->filter(function($i) {
+            return (!empty($i));
+        });
+        
+        return $item->all();
     }
     
     
