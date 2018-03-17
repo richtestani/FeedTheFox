@@ -3,6 +3,8 @@
 //route: '/postprocess/datafeed
 //example works with Laravel 5
 
+require_once(__DIR__.'/autoload.php');
+
 use RichTestani\FeedTheFox\DataFeed;
 use App\Customer;
 use App\Order;

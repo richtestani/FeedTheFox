@@ -44,7 +44,7 @@ class Details implements iModel {
     
     public function hasOptions()
     {
-        return (count($this->options) > 0) ? true : false; 
+        return ($this->options->numOptions() > 0) : true : false; 
     }
     
     public function options()
@@ -54,9 +54,11 @@ class Details implements iModel {
     
     public function getAllValuesByProperty($property)
     {
-        return $this->details->find(function($index, $el) use ($property) {
-            return (is_array($property)) ? $this->details->only($property) : $this->details->pluck($property);
+        $item = $this->details->pluck($property)->filter(function($i) {
+            return (!empty($i));
         });
+        
+        return $item->all();
     }
     
     

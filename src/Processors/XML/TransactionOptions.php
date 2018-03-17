@@ -26,10 +26,34 @@ class TransactionOptions {
     }
     
     
-    public function get()
+    public function get($property)
     {
         
-        return $this->options;
+        return (is_null($property)) ? $this->options : $this->options->get($property);
         
+    }
+    
+    public function numOptions() {
+        
+        return $this->options->count();
+        
+    }
+    
+    public function getAllOptionsNames()
+    {
+        $item = $this->details->pluck('product_option_name')->filter(function($i) {
+            return (!empty($i));
+        });
+        
+        return $item->all();
+    }
+    
+    public function getAllOptionsValues()
+    {
+        $item = $this->details->pluck('product_option_value')->filter(function($i) {
+            return (!empty($i));
+        });
+        
+        return $item->all();
     }
 }

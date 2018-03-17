@@ -22,7 +22,7 @@ composer require richtestani/feedthefox:dev-master
 ```
 
 ```
-use RichTestani\FeedTheFox;
+use RichTestani\FeedTheFox\DataFeed;
 
 $config = [
     'key' => 'my-api-key',
