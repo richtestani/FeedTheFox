@@ -40,3 +40,5 @@ Returns an integer for the number of options in this total order
 numItems()
 ```
 Returns an integer with the number of items in the order
+
+{% include menu.md %}

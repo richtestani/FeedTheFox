@@ -39,3 +39,5 @@ Returns true if the amount is greater than the shipping total.
 shippingCostIsLessThan($amount)
 ```
 Returns true if the amount is less than the shipping total.
+
+{% include menu.md %}

@@ -78,4 +78,5 @@ I will get both `note` and `gift wrap` returned as a collection.
 isHidden($name, $value)
 ````
 Returns true or false if name, value has a hidden value of 1
-    
+
+{% include menu.md %}

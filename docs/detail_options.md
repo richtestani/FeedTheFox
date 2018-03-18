@@ -14,5 +14,6 @@ $options = $$details->options();
 * Or from the details get method
 ```
 $options = $datafeed->details->get('transaction_detail_options');
+```
 
-
+{% include menu.md %}

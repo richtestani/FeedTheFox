@@ -30,3 +30,4 @@ isGuest()
 ```
 Returns true if the customer does not have.
 
+{% include menu.md %}

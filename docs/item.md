@@ -56,8 +56,10 @@ optionName()
 ```
 
 *optionValue*
-Retuens the value of options for this item.
+Returns the value of options for this item.
 
 ```
 optionValue()
 ```
+
+{% include menu.md %}

@@ -23,6 +23,8 @@ if($discounts->hasDiscount() && $discounts->hasCode('BOGO')) {
 }
 
 ```
+
+```
 hasDiscount()
 ```
 Returns true or false if the order has discount data
@@ -31,3 +33,5 @@ Returns true or false if the order has discount data
 hasCode($code)
 ```
 Returns true or false if the provided code is in the order
+
+{% include menu.md %}
