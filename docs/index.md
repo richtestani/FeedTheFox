@@ -88,4 +88,4 @@ To get the name of discount:
 $datafeed->discounts->get('name');
 ```
 
-{% include includes/menu.md %}
+{% include menu.md %}
