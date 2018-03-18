@@ -14,7 +14,7 @@ The following methods are available to the detail model.
 ```
 get($property = null)
 ```
-Returns a single value, or and entire array. If no property name is provided, the entire array is returned.
+Returns a single value, or and entire array. If no property name is provided, the entire collection is returned.
 
 ```
 options()
@@ -34,4 +34,9 @@ Returns an intger of the number of items in this order
 ```
 numOptions()
 ```
-Returns an intefer for the number of options in this total order
+Returns an integer for the number of options in this total order
+
+```
+numItems()
+```
+Returns an integer with the number of items in the order

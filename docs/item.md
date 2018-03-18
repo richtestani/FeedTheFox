@@ -36,7 +36,7 @@ retrieve any of these properties through the get method.
 ## Methods
 
 *priceFormatted*
-Returns a number formatted as 0.00. Default is US format.
+Returns a number formatted as 0.00. Default is `en_US` format.
 
 ```
 priceFormatted($price, $locale = 'en_US')
