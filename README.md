@@ -16,7 +16,7 @@ Install with composer, or download this package.
 It does require laravel/collection to work.
 
 ```
-composer require richtestani/feedthefox:dev-master
+composer require richtestani/feedthefox
 ```
 
 ```
