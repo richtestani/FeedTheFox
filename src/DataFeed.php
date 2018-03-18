@@ -69,7 +69,8 @@ class DataFeed {
     
     public function __call($name, $args)
     {
-
+        
+        
         if(property_exists($this, $name)) {
             
             if((count($args) >= 1 && count($args) < 2)) {
@@ -81,7 +82,10 @@ class DataFeed {
             
         }
         
-        if(in_array(ucwords($name), $this->models)) {
+        //lowercase slug to studly case
+        $model = trim(str_replace(' ', '', ucwords(str_replace('_', ' ', $name))));
+        
+        if(in_array($model, $this->models)) {
 
             return $this->$name;
             

@@ -21,9 +21,16 @@ class CustomFields implements iModel {
 
     public function get($property = null)
     {
-        if(is_null($property)) {
-            return $this->custom;
+        
+        if(!is_null($property)) {
+            $items = $this->custom->filter(function($item) use ($property) {
+                echo $property.'<br>';
+                return $item->get($property);
+            });
+            
+            return $items;
         }
+        
         return $this->custom;
     }
     
@@ -41,8 +48,7 @@ class CustomFields implements iModel {
     public function find($property, $value) {
         
         return $this->custom->first(function($index, $el) use ($property, $value) {
-
-            if( $el[$property] == $value ) {
+            if( $el->get($property) == $value ) {
                 return $el;
             }
             
@@ -50,9 +56,9 @@ class CustomFields implements iModel {
     }
     
         
-    public function isHidden($name)
+    public function isHidden($name, $value)
     {
-        $field = $this->get($name);
+        $field = $this->find($name, $value);
         
         if(!is_null($field) && $field['custom_field_is_hidden']) {
             return true;

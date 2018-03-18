@@ -14,16 +14,23 @@ class CustomFields {
         
         $data = $data->custom_fields;
         
+        $custom = [];
+        
         foreach($data->custom_field as $c) {
             
-            $custom = [
+            $fields = [
                 'custom_field_name' => (string)$c->custom_field_name,
                 'custom_field_value' => (string)$c->custom_field_value,
                 'custom_field_is_hidden' => (string)$c->custom_field_is_hidden
             ];
             
-            $this->custom->push($custom);
+            $customfields = new CustomField($fields);
+            $custom[] = $customfields->get();
         }
+        
+        $this->custom = new Collection($custom);
+        
+        
     }
 
 
