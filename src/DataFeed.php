@@ -3,7 +3,7 @@
 namespace RichTestani\FeedTheFox;
 
 use RichTestani\FeedTheFox\Factory\DataProcessorFactory;
-use use RichTestani\FeedTheFox\Factory\ModelFactory;
+use RichTestani\FeedTheFox\Factory\ModelFactory;
 use RichTestani\FeedTheFox\Models;
 
 /**
