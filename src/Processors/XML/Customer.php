@@ -4,48 +4,62 @@ namespace RichTestani\FeedTheFox\Processors\XML;
 
 use Illuminate\Support\Collection;
 
+
 class Customer {
-    
+
+    /**
+    * The customer collection
+    *
+    * @var object
+    */
     protected $customer;
-    
-    protected $customer_ip;
-    protected $customer_id;
-    protected $customer_first_name;
-    protected $customer_last_name;
-    protected $customer_company;
-    protected $customer_email;
-    protected $customer_password;
-    protected $customer_address1;
-    protected $customer_address2;
-    protected $customer_city;
-    protected $customer_state;
-    protected $customer_postal_code;
-    protected $customer_country;
-    protected $customer_phone;
-    protected $minfraud_score;
-    protected $is_anonymous;
-    
-    
+
+    /**
+    * Supported properties for the Models\Customers
+    *
+    * @var array
+    */
+    protected $properties = [
+        'customer_ip',
+        'customer_id',
+        'customer_first_name',
+        'customer_last_name',
+        'customer_company',
+        'customer_email',
+        'customer_address1',
+        'cusotmer_address2',
+        'customer_password',
+        'customer_city',
+        'customer_state',
+        'customer_postal_code',
+        'customer_country',
+        'customer_phone',
+        'minfraud_score',
+        'is_anonymous'
+    ];
+
+
     public function __construct($transaction)
     {
 
         $customer = [];
-        
-        foreach (get_object_vars($this) as $name => $prop) {
-           $customer[$name] = (string)$transaction->$name;
+
+        foreach ($this->properties as $prop) {
+
+           $customer[$prop] = (string)$transaction->$prop;
+
         }
-        
-        //setup a collection for easy access
+
         $this->customer = new Collection($customer);
-        
+
     }
-    
+
     public function get() {
-        
+
         return $this->customer;
-        
+
     }
-    
+
     public function getId()
     {
         return $this->customer->get('customer_id');

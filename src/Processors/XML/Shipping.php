@@ -7,37 +7,45 @@ use Illuminate\Support\Collection;
 class Shipping {
 
     protected $shipping;
-    
-    protected $shipping_first_name;
-    protected $shipping_last_name;
-    protected $shipping_company;
-    protected $shipping_address1;
-    protected $shipping_address2;
-    protected $shipping_city;
-    protected $shipping_state;
-    protected $shipping_postal_code;
-    protected $shipping_country;
-    protected $shipping_phone;
-    protected $shipto_shipping_service_description;
-    protected $shipping_total;
 
+    protected $properties = [
+      'shipping_first_name',
+      'shipping_last_name',
+      'shipping_company',
+      'shipping_address1',
+      'shipping_address2',
+      'shipping_city',
+      'shipping_state',
+      'shipping_postal_code',
+      'shipping_country',
+      'shipping_phone',
+      'shipto_shipping_service_description',
+      'shipping_total',
+    ];
+
+    
     public function __construct($transaction)
     {
-        
+
         $shipping = [];
- 
-        foreach (get_object_vars($this) as $name => $prop) {
+
+        foreach ($this->properties as $prop) {
+
             $shipping[$name] = (string)$transaction->$name;
+
         }
-        
+
         $this->shipping = new Collection($shipping);
-        
+
     }
 
-
-    public function get($name = null)
+    /**
+    *
+    * @return object
+    */
+    public function get()
     {
-        
+
         return $this->shipping;
 
     }
