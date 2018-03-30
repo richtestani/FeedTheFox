@@ -62,16 +62,15 @@ class Transaction {
 
     }
 
-    private function handleDetailOptions($details_options)
+    private function handleDetailOptions($options)
     {
 
-      $options = $details->transaction_detail_options;
       $this->transaction_detail_options = new TransactionOptions($options);
 
     }
 
 
-    public function get($property = null)
+    public function get()
     {
         return $this->transaction;
     }

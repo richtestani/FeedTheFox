@@ -19,7 +19,7 @@ class CustomField {
     */
     protected $properties = [
       'custom_field_name',
-      'custom_field_value'
+      'custom_field_value',
       'custom_field_is_hidden'
     ];
 
@@ -31,7 +31,7 @@ class CustomField {
 
         foreach($this->properties as $prop) {
 
-          $customfield[$prop] = $transaction->$prop;
+          $customfield[$prop] = (string)$transaction->$prop;
 
         }
 

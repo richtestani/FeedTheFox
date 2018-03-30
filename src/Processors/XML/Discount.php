@@ -23,7 +23,6 @@ class Discount {
     public function __construct($discount, $transaction_id, $customer_id)
     {
 
-        $discount = $discount;
         $collection = [];
 
         foreach($this->properties as $prop) {

@@ -23,7 +23,7 @@ class Shipping {
       'shipping_total',
     ];
 
-    
+
     public function __construct($transaction)
     {
 
@@ -31,7 +31,7 @@ class Shipping {
 
         foreach ($this->properties as $prop) {
 
-            $shipping[$name] = (string)$transaction->$name;
+            $shipping[$prop] = (string)$transaction->$prop;
 
         }
 

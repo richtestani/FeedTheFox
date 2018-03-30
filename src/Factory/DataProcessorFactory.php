@@ -3,26 +3,27 @@
 namespace RichTestani\FeedTheFox\Factory;
 
 use RichTestani\FeedTheFox\Interfaces\iDataProcessor;
+use RichTestani\FeedTheFox\Processors;
 
 class DataProcessorFactory {
-    
+
     public function make($config)
     {
-        
-        switch($config['datatype']) {
-                
+
+        switch(strtolower($config['datatype'])) {
+
             case 'xml':
-                
-                return new RichTestani\FeedTheFox\Processors\XML($config);
-                
+
+                return new Processors\XML($config);
+
                 break;
-                
+
             case 'json':
-                
-                return new RichTestani\FeedTheFox\Processors\JSON($config); 
-                
+
+                return new Processors\JSON($config);
+
                 break;
         }
-        
+
     }
 }

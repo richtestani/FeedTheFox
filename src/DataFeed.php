@@ -3,6 +3,7 @@
 namespace RichTestani\FeedTheFox;
 
 use RichTestani\FeedTheFox\Factory\DataProcessorFactory;
+use use RichTestani\FeedTheFox\Factory\ModelFactory;
 use RichTestani\FeedTheFox\Models;
 
 /**
@@ -143,7 +144,7 @@ class DataFeed {
 
             $modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $model)));
 
-            $this->$model = $modelFactory->make($modelName, $processor)
+            $this->$model = $modelFactory->make($modelName, $processor);
             $this->models[] = $modelName;
 
         }
