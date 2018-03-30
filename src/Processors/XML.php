@@ -7,16 +7,45 @@ use RichTestani\FeedTheFox\Encryption\rc4crypt;
 
 class XML implements iDataProcessor {
     
+    /**
+    * The xml string
+    *
+    * @var string
+    */
     protected $xml;
     
+    /**
+    * The foxy key
+    * 
+    * @var string
+    */
     protected $key;
     
+    /**
+    * Boolean value to force decryption 
+    * 
+    * @var boolean
+    */
     protected $encrypted = true;
     
+    /**
+    * The parsed data in an array
+    *
+    * @var array
+    */
     protected $foxydata;
     
+    /**
+    * The transaction node on the xml document
+    *
+    * @var object
+    */
     protected $transaction;
     
+    /**
+    *
+    * @return void
+    */
     public function __construct($config) {
         
         extract($config);
@@ -33,6 +62,11 @@ class XML implements iDataProcessor {
         
     }
     
+    /**
+    * returns all the data in an array
+    *
+    * @return void
+    */
     public function get()
     {
         return $this->foxydata;
@@ -40,7 +74,9 @@ class XML implements iDataProcessor {
     
     
     /**
-        The method doing most of the work.
+    * passes the foxydata through here, and builds the data models
+    *
+    * @return void
     */
     public function process($data = null)
     {
@@ -78,6 +114,11 @@ class XML implements iDataProcessor {
 
     }
     
+    /**
+    * data setter
+    *
+    * @return void
+    */
     public function setData($transaction)
     {
         //Parse the XML into logical portions
@@ -98,7 +139,11 @@ class XML implements iDataProcessor {
         ];
     }
 
-    
+    /**
+    * returns the xml string
+    *
+    * @return string
+    */
     public function toString()
     {
         
@@ -106,6 +151,11 @@ class XML implements iDataProcessor {
         
     }
     
+    /**
+    * ends the process
+    *
+    * @return string
+    */
     public function done()
     {
         
@@ -113,13 +163,11 @@ class XML implements iDataProcessor {
         
     }
     
-    private function customer()
-    {
-        
-        $this->customer = new Models\Customer();
-        
-    }
-    
+    /**
+    * decrypt a string using rc4crypt
+    *
+    * @return string
+    */
     private function decrypt($encrypted)
     {
         
@@ -127,13 +175,24 @@ class XML implements iDataProcessor {
         
     }
     
+    /**
+    * decrypt a string using rc4crypt
+    *
+    * @return string
+    */
     private function encrypt($data)
     {
         
         $data = rc4crypt::encrypt($this->key, $data);
         return urlencode($data);
+        
     }
     
+    /**
+    * checks if a key was passed within the config
+    *
+    * @return boolean
+    */
     private function hasKey($config)
     {
         
@@ -144,19 +203,33 @@ class XML implements iDataProcessor {
            return false;
     }
     
+    /**
+    * tests if the _POST array has a key named FoxyData
+    *
+    * @return boolean
+    */
     private function isFoxy($data)
     {
         if(array_key_exists('FoxyData', $data)) {
+            
             return true;
+            
         }
         
         return false;
     }
     
+    /**
+    * tests if we are configured for an encrypted string
+    *
+    * @return string
+    */
     private function isDataEncrypted($config)
     {
         if(array_key_exists('encrypted', $config)) {
+            
             $this->encrypted = $config['encrypted'];
+            
         }
     }
     
