@@ -2,7 +2,7 @@
 	
 namespace RichTestani\FeedTheFox;
 
-use RichTestani\FeedTheFox\Processors\DataProcessorFactory;
+use RichTestani\FeedTheFox\Factory\DataProcessorFactory;
 use RichTestani\FeedTheFox\Models;
 
 /**
@@ -18,19 +18,29 @@ use RichTestani\FeedTheFox\Models;
 
 class DataFeed {
 	
+    /*
+    @var string
+    */
 	protected $apikey;
+    
+    /*
+    @var object
+    */
 	protected $processor;
+    
+    /*
+    @var array
+    */
     protected $models;
     
+    /*
+    @var object
+    */
     private $factory;
     
     
     public function __construct($config, $datatype = 'xml')
     {
-        
-        $this->datatype = strtoupper($datatype);
-        
-        $this->factory = new DataProcessorFactory;
         
         if(!is_array($config)) {
             
@@ -38,34 +48,37 @@ class DataFeed {
             
         }
         
+        $this->datatype = strtoupper($datatype);
+        
+        $this->setFactory();
+        
         $config['datatype'] = $this->datatype;
         
         $this->processor = $this->factory->make($config);
         
     }
     
+    /*
+    Run the processor
+    */
     public function process($data = null)
     {
+        
         $this->processor->process($data);
         
         $foxydata  = $this->processor->get();
         
-        foreach($foxydata as $model => $processor) {
-            
-            $modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $model)));
-            $class = __NAMESPACE__."\\Models\\".$modelName;
-            
-            $this->$model = new $class($processor);
-            $this->models[] = $modelName;
-            
-        }
+        $this->parseData($foxydata);
         
     }
     
     public function toString()
     {
+        
         return $this->processor->toString();
+        
     }
+    
     
     public function __call($name, $args)
     {
@@ -91,6 +104,29 @@ class DataFeed {
             
         }
 
+    }
+    
+    private function parseData($foxydata)
+    {
+        
+        $modelFactory = new ModelFactory();
+        
+        foreach($foxydata as $model => $processor) {
+            
+            $modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $model)));
+            
+            $this->$model = $modelFactory->make($modelName, $processor)
+            $this->models[] = $modelName;
+            
+        }
+        
+    }
+    
+    public function setFactory()
+    {
+        
+        $this->factory = new DataProcessorFactory;
+        
     }
 
 }

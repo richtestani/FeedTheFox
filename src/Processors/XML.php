@@ -8,9 +8,14 @@ use RichTestani\FeedTheFox\Encryption\rc4crypt;
 class XML implements iDataProcessor {
     
     protected $xml;
+    
     protected $key;
+    
     protected $encrypted = true;
+    
     protected $foxydata;
+    
+    protected $transaction;
     
     public function __construct($config) {
         
@@ -18,7 +23,7 @@ class XML implements iDataProcessor {
         
         if( !$this->hasKey($config) ) {
             
-            trigger_error("No key was provided. Please check your FoxyCart documentation for getting an api key");
+            die("No key was provided. Please check your FoxyCart documentation for getting an api key");
             
         }
         
@@ -48,7 +53,7 @@ class XML implements iDataProcessor {
         
         if( !$this->isFoxy($data) ) {
             
-            trigger_error("This data is not foxy.");
+            die("This data is not foxy.");
             
         }
         
@@ -66,15 +71,22 @@ class XML implements iDataProcessor {
         //use PHP's built in simple xml parser
         $this->xml = simplexml_load_string($data, null, LIBXML_NOCDATA);
 
-        $transaction = $this->xml->transactions->transaction;
+        $this->transaction = $this->xml->transactions->transaction;
         
+        $this->setData($this->transaction);
+        
+
+    }
+    
+    public function setData($transaction)
+    {
         //Parse the XML into logical portions
-        $customer = new XML\Customer($transaction);
-        $order = new XML\Order($transaction);
-        $details = new XML\Transactions($transaction, $order->getId(), $customer->getId());
-        $custom = new XML\CustomFields($transaction);
-        $shipping = new XML\Shipping($transaction);
-        $discounts = new XML\Discounts($transaction, $order->getId(), $customer->getId());
+        $customer       = new XML\Customer($transaction);
+        $order          = new XML\Order($transaction);
+        $details        = new XML\Transactions($transaction, $order->getId(), $customer->getId());
+        $custom         = new XML\CustomFields($transaction);
+        $shipping       = new XML\Shipping($transaction);
+        $discounts      = new XML\Discounts($transaction, $order->getId(), $customer->getId());
         
         $this->foxydata = [
             'customer'              => $customer,
@@ -84,18 +96,21 @@ class XML implements iDataProcessor {
             'shipping'              => $shipping,
             'discounts'             => $discounts
         ];
-        
-
     }
+
     
     public function toString()
     {
+        
         return $this->xml->asXML();
+        
     }
     
     public function done()
     {
+        
         die("foxy");
+        
     }
     
     private function customer()

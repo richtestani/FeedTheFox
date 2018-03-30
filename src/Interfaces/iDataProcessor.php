@@ -8,4 +8,7 @@ interface iDataProcessor {
     
     public function get();
     
+    public function toString();
+    
+    
 }
