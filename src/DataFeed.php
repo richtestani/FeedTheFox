@@ -37,7 +37,7 @@ class DataFeed {
     /**
     * @var array
     */
-    protected $models;
+    protected $models = [];
 
     /*
     * The processor factory
@@ -126,7 +126,11 @@ class DataFeed {
 
             return $this->$name;
 
-        }
+        } else {
+
+					$this->processor->$name($args);
+
+				}
 
     }
 
