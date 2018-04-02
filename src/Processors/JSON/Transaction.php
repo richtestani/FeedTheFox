@@ -61,7 +61,7 @@ class Transaction {
       $this->handleDetailCategory($item['_embedded']['fx:item_options']);
     }
 
-    $item['item_options'] = $this->options;
+    $item['transaction_detail_options'] = $this->options;
 
     $this->item = new Collection($item);
 

@@ -9,7 +9,7 @@ class TransactionOptions {
     protected $options;
 
     protected $properties = [
-      'product_option_name' => 'name'
+      'product_option_name' => 'name',
       'product_option_value' => 'value',
       'price_mod' => 'price_mod',
       'weight_mod' => 'weight_mod',

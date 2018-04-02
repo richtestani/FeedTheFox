@@ -13,17 +13,15 @@ class CustomFields {
     */
     protected $custom;
 
-    public function __construct($data)
+    public function __construct($data, $transaction_id, $customer_id)
     {
         $this->custom = new Collection();
 
-        $data = $data->custom_fields;
-
         $custom = [];
 
-        foreach($data->custom_field as $c) {
+        foreach($data as $c) {
 
-            $customfields = new CustomField($c);
+            $customfields = new CustomField($c, $transaction_id, $customer_id);
             $custom[] = $customfields->get();
 
         }

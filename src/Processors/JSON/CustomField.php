@@ -18,9 +18,11 @@ class CustomField {
     *
     */
     protected $properties = [
-      'custom_field_name',
-      'custom_field_value',
-      'custom_field_is_hidden'
+      'custom_field_name' => 'name',
+      'custom_field_value' => 'value',
+      'custom_field_is_hidden' => 'is_hidden',
+      'date_created' => 'date_created',
+      'date_modified' => 'date_modified'
     ];
 
 
@@ -29,9 +31,12 @@ class CustomField {
 
         $customfield = [];
 
-        foreach($this->properties as $prop) {
+        foreach($this->properties as $prop => $map) {
 
-          $customfield[$prop] = $transaction[$prop];
+          if(in_array($map, $transaction)) {
+            $customfield[$prop] = $transaction[$map];
+          }
+
 
         }
 

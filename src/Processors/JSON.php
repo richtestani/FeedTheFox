@@ -121,7 +121,7 @@ class JSON implements iDataProcessor {
         $customer = new JSON\Customer($this->transaction);
         $order = new JSON\Order($this->transaction, $customer->getId());
         $details = new JSON\Transactions($this->transaction['_embedded']['fx:items'], $order->getId(), $customer->getId());
-        $custom = new JSON\CustomFields($this->transactions['_embdedd']['fx:custom']);
+        $custom = new JSON\CustomFields($this->transaction['_embedded']['fx:custom_fields'], $order->getId(), $customer->getId());
         $shipping = new JSON\Shipments($this->transaction['_embedded']['fx:shipments'], $order->getId(), $customer->getId());
         $taxes = new JSON\Taxes($this->transaction['_embedded']['fx:applied_taxes'], $order->getId(), $customer->getId());
         $discounts = new JSON\Discounts($this->transaction['_embedded']['fx:discounts'], $order->getId(), $customer->getId());

@@ -25,9 +25,9 @@ class Discount {
 
         $collection = [];
 
-        foreach($this->properties as $d) {
+        foreach($this->properties as $prop => $d) {
 
-          if(array_key_exists($prop, $d)) {
+          if(array_key_exists($d, $discount)) {
 
             $collection[$prop] = $discount[$prop];
 
