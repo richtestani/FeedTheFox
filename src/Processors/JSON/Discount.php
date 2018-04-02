@@ -11,7 +11,7 @@ class Discount {
     protected $properties = [
       'code' => 'code',
       'name' => 'name',
-      'amount' => 'amount'
+      'amount' => 'amount',
       'display' => 'display',
       'coupon_display_type' => '',
       'coupon_discount_details' => 'coupon_discount_details',

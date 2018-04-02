@@ -4,7 +4,7 @@ namespace RichTestani\FeedTheFox\Processors\JSON;
 
 use Illuminate\Support\Collection;
 
-class Discount {
+class Discounts {
 
     protected $discount;
 

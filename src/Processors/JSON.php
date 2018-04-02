@@ -135,7 +135,8 @@ class JSON implements iDataProcessor {
             'custom_fields'         => $custom,
             'shipping'              => $shipping,
             'discounts'             => $discounts,
-            'taxes'                 => $taxes
+            'taxes'                 => $taxes,
+            'payments'              => $payments
         ];
     }
 
