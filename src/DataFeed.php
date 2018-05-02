@@ -122,7 +122,7 @@ class DataFeed {
         //lowercase slug to studly case
         $model = trim(str_replace(' ', '', ucwords(str_replace('_', ' ', $name))));
 
-        if(in_array($model, $this->models)) {
+        if(!is_null($this->models) && in_array($model, $this->models)) {
 
             return $this->$name;
 
@@ -156,7 +156,7 @@ class DataFeed {
     }
 
     /**
-    * Sets the facory property
+    * Setup the factory
     *
     * @return void
     */
@@ -166,6 +166,13 @@ class DataFeed {
         $this->factory = new DataProcessorFactory;
 
     }
+
+		public function done()
+		{
+			$this->processor->done();
+		}
+
+
 
 }
 ?>
