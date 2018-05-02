@@ -68,7 +68,7 @@ class Order {
         foreach($this->properties as $prop => $map) {
 
           if(array_key_exists($map, $merged)) {
-            $customer[$prop] = $merged[$map];
+            $order[$prop] = $merged[$map];
           }
 
         }
