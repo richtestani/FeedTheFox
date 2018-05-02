@@ -10,10 +10,10 @@ Create a new file dalled datafeed.php
 include the composer autload file, and import RichTestani\FeedTheFox\DataFeed;
 
 ```
-$config[
+$config = [
     'key' => 'your-key-in-advanced-settings',
     'encrypted' => false
-]
+];
 ```
 By default, were expecting an encryped xml file, but we can use a plain string from a file without dealing with
 encryption and decryption.

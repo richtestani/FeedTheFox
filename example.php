@@ -10,25 +10,33 @@ use App\Customer;
 use App\Order;
 use App\TransactionDetails;
 
+
+/**
+ XML DataFeed Example
+ **/
 $datafeed = new DataFeed('apikey_2349045utjrdfkl93u4r43tr345');
-$datafeed->process($_POST);
+$datafeed->process();
 
 
 $order = $datafeed->order->get();
-$customer = $datafeed->customer->get();
-$details = $datafeed->details->get();
-
-Customer::create($customer);
-Order::create($order);
+echo $order->get('id');
 
 
-foreach($details as $key => $record) {
-    
-    $transaction = [];
-    $transaction['id']              = $datafeed->order->get('id');
-    $transaction['code']            = $record->get('product_code');
-    $transaction['product_name']    = $record->get('product_name');
-    $transaction['unit']            = $record->get('product_price');
-    
-    TransactionDetails::create($transaction);
-}
+
+//$customer = $datafeed->customer->get();
+//$details = $datafeed->details->get();
+//
+//Customer::create($customer);
+//Order::create($order);
+//
+//
+//foreach($details as $key => $record) {
+//    
+//    $transaction = [];
+//    $transaction['id']              = $datafeed->order->get('id');
+//    $transaction['code']            = $record->get('product_code');
+//    $transaction['product_name']    = $record->get('product_name');
+//    $transaction['unit']            = $record->get('product_price');
+//    
+//    TransactionDetails::create($transaction);
+//}
