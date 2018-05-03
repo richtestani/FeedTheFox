@@ -18,11 +18,6 @@ class DetailOptions implements iModel {
         $options = $processor->get();
         $option= [];
 
-        foreach($options as $o) {
-            //each collection
-            $option[] = $o;
-        }
-
         if(empty($options->all())) {
             $this->hasOptions = false;
         }

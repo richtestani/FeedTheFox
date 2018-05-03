@@ -9,7 +9,7 @@ class Transaction {
     protected $transaction;
 
     protected $properties = [
-       'id',
+       'transaction_id',
        'transaction_date',
        'product_name',
        'product_price',
@@ -34,6 +34,7 @@ class Transaction {
        'category_code',
        'product_delivery_type',
        'transaction_detail_options',
+
     ];
 
 
@@ -53,6 +54,7 @@ class Transaction {
         }
 
         $this->handleDetailOptions($details->transaction_detail_options);
+
         $transaction['transaction_detail_options'] = $this->transaction_detail_options;
 
         $transaction['transaction_id'] = $this->transaction_id;
