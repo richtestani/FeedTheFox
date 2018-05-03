@@ -8,7 +8,7 @@ From the datafeed object
 
 ```
 $details = $datfeed->details();
-$options = $$details->options();
+$options = $details->options();
 ```
 
 Or from the details get method
@@ -16,5 +16,6 @@ Or from the details get method
 ```
 $options = $datafeed->details->get('transaction_detail_options');
 ```
+The latter method will return options unassociated with a particular product.
 
 {% include menu.md %}

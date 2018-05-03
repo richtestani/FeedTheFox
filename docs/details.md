@@ -7,6 +7,28 @@ The following properties are available with the `get()` method.
 
 * transaction
 
+The details model is the most complex because this reflects a line item as an object rather than individual items.
+Each item within an iteration would be an item to output.
+
+```
+$details = $datafeed->details();
+
+foreach($details->get() as $item) {
+
+  //Item object
+  $product = $item->get('product_name');
+  $code = $item->get('product_code');
+
+  if($item->hasOptions()) {
+    $options = $item->options();
+
+    foreach($options as $option) {
+      $optName = $options->get('product_option_name');
+    }
+  }
+
+}
+
 
 The following methods are available to the detail model.
 

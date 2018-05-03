@@ -229,6 +229,8 @@ class JSON implements iDataProcessor {
         }
     }
 
-
+    public function done() {
+      return;
+    }
 
 }

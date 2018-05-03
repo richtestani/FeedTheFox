@@ -13,66 +13,65 @@ class Details implements iModel {
     protected $numOptions = 0;
     protected $numItems = 0;
 
-    
+
     public function __construct($processor)
     {
-        
+
         $details = $processor->get();
         $d = var_export($processor, true);
-        file_put_contents(__DIR__.'/details.txt', $d);
         $detail = [];
         $options = [];
-        
+
         foreach($details as $d) {
-            
+
             $option = $d->pull('transaction_detail_options');
             $option = new DetailOptions($option);
-            
+
             //count options
             if($option->hasOptions()) {
                 $this->numOptions++;
             }
-            
+
             $options[] = $option;
             $d->put('transaction_detail_options', $option);
             $detail =  $d;
             $this->numItems++;
-            
+
             $this->details[] = new Item($detail);
         }
-        
 
-        
+
+
         $this->options = new Collection($options);
 
     }
-    
+
 
     public function get($property = null)
     {
         return (is_null($property)) ? $this->details : $this->details->get($property);
     }
-    
+
     public function numItems()
     {
         return $this->numItems;
     }
-    
+
     public function numOptions()
     {
-        
+
         return $this->numOptions;
-        
+
     }
     public function hasOptions()
     {
-        return ($this->numOptions > 0) ? true : false; 
+        return ($this->numOptions > 0) ? true : false;
     }
-    
+
     public function options()
     {
         return $this->options;
     }
-    
-    
+
+
 }
