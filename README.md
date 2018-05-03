@@ -24,7 +24,7 @@ use RichTestani\FeedTheFox\DataFeed;
 
 //new instance
 $datafeed = new DataFeed('my-foxy-key');
-$datafeed->process($_POST);
+$datafeed->process();
 
 if( $datafeed->order->transactionDeclined() ) {
     //mail me about this issue.
