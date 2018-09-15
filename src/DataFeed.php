@@ -56,6 +56,8 @@ class DataFeed {
 
         if(!is_array($config)) {
 
+            $key = $config;
+            $config = [];
             $config['key'] = $config;
 
         }
