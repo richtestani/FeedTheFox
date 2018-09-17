@@ -75,35 +75,14 @@ class JSON implements iDataProcessor {
 
         if( isset($_SERVER['HTTPS'] ) ) {
 
-          if(!$this->encrypted) {
-
-              $transaction = json_decode($data, true);
-
-              if( !$this->isFoxy($transaction) ) {
-
-                  die("This data is not foxy.");
-
-              }
-
-              $signature = $this->encrypt($data);
-
-              if(!$this->signatureMatch) {
-
-                if ( !array_key_exists('HTTP_FOXY_WEBHOOK_SIGNATURE', $_SERVER) OR !hash_equals($signature, $_SERVER['HTTP_FOXY_WEBHOOK_SIGNATURE'])) {
-
-                    echo "Signature verification failed - data corrupted";
-                    http_response_code(500);
-                    return;
-
-                }
-
-              }
-
-          }
+           //came over https, no encryption involved
+          $transaction = json_decode($data, true);
 
         } else {
-
+        
+          //standatd http connection will return encrypted message
           $transaction = $this-decrypt($data);
+          //match signature
 
         }
 
