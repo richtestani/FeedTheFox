@@ -9,15 +9,22 @@ class Shipment {
   protected $shipment;
 
   protected $properties = [
-      'amount',
-      'apply_to_handling',
-      'apply_to_shipping',
+      'country',
+      'shipping_service_id',
+      'shipping_service_description',
+      'total_price',
+      'address1',
+      'address2',
+      'city',
       'date_created',
       'date_modified',
-      'is_future_tax',
-      'name' => 'Global Tax',
-      'rate',
-      'shipto',
+      'first_name',
+      'last_name',
+      'postal_code',
+      'region',
+      'phone',
+      'company',
+      'total_shipping',
       'transaction_id',
       'customer_id'
   ];
