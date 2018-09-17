@@ -58,7 +58,7 @@ class Transaction {
     }
 
     if(isset($item['_embedded']['fx:item_category'])) {
-      $this->handleDetailCategory($item['_embedded']['fx:item_options']);
+      $this->handleDetailCategory($item['_embedded']['fx:item_category']);
     }
 
     $item['transaction_detail_options'] = $this->options;
