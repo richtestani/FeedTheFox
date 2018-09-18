@@ -51,7 +51,7 @@ echo $order->get('id');
 
 //you can also use the methods on the object
 if( $order->transactionDeclined() ) {
-    echo 'this transaction was devlined';
+    echo 'this transaction was declined';
 }
 
 //show the transaction product names

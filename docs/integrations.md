@@ -5,7 +5,7 @@
 
 Since it's a composer package, FeedTheFox can work in nearly any project.
 Because it uses Laravel's Collection package to handle working with the sets of data,
-it fits nicely into Laravel 5 projects.
+it fits nicely into any Laravel 5 projects.
 
 ```
 composer require richtestani/feedthefox

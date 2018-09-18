@@ -31,5 +31,22 @@ $order = $datafeed->order();
 echo $order->get('id');
 ```
 
+#### JSON Format
+
+If you want to test a JSON configured store (setup under Integrations), initialise the datafeed like this.
+
+```
+$config = [
+    'key' => 'your-secret-key',
+    'encrypted' => false
+];
+
+$json = file_get_contents('example.json');
+$datafeed = new DataFeed($config, 'json');
+$datafeed->process($json);
+
+$order = $datafeed->order();
+echo $order->get('id');
+```
 
 {% include menu.md %}
