@@ -130,9 +130,9 @@ class DataFeed {
 
         } else {
 
-					$this->processor->$name($args);
+            $this->processor->$name($args);
 
-				}
+        }
 
     }
 
