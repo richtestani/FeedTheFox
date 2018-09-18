@@ -17,7 +17,25 @@ The following properties are available with the `get()` method.
 * shipto_shipping_service_description
 * shipping_total
 
-The following methods are available to the shipping model.
+The following methods are available to the shipping model. The shipping model is a collection of shipments.
+
+```
+$shipping = $datafeed->shipping();
+
+foreach($shipping as $shipment) {
+
+    echo $shipment->get('shipping_first_name');
+
+}
+
+```
+
+```
+totalShipments()
+
+$shipping->totalShiments();
+```
+Returns integer of number of used shipments for a transaction.
 
 
 ```
