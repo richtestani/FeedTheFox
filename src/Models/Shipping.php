@@ -10,11 +10,16 @@ class Shipping implements iModel {
 
     protected $shipping;
 
+    protected $shipments;
 
     public function __construct($processor)
     {
 
         $this->shipping = new Collection($processor->get());
+
+        foreach($this->shipping as $shipment) {
+            $this->shipments[] = $shipment->get();
+        }
 
     }
 
@@ -38,7 +43,9 @@ class Shipping implements iModel {
     {
 
         if(!is_numeric($amount)) {
+
             trigger_error("shippingCostIsGreaterThan require number");
+
         }
 
         $ship_total = $this->shipping->get('shipping_total');
