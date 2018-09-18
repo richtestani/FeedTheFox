@@ -126,13 +126,13 @@ class DataFeed {
 
         if(!is_null($this->models) && in_array($model, $this->models)) {
 
-            return $this->$name;
+            return $this->$name->get();
 
         } else {
 
-					$this->processor->$name($args);
+            $this->processor->$name($args);
 
-				}
+        }
 
     }
 

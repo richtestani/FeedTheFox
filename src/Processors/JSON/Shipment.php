@@ -35,8 +35,8 @@ class Shipment {
     $s = [];
     foreach($this->properties as $prop)
     {
-      if(in_array($prop, $shipment)) {
-
+      if(array_key_exists($prop, $shipment)) {
+        
         $s[$prop] = $shipment[$prop];
 
       }
