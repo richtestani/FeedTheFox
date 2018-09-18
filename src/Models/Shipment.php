@@ -1,9 +1,9 @@
 <?php
 
-namespace RichTestaniFeedTheFoxModels;
+namespace RichTestani\FeedTheFox\Models;
 
-use RichTestaniFeedTheFoxInterfacesiModel;
-use IlluminateSupportCollection;
+use RichTestani\FeedTheFox\Interfaces\iModel;
+use Illuminate\Support\Collection;
 
 
 class Shipment implements iModel {

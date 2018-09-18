@@ -16,7 +16,7 @@ class Shipments {
     foreach($shipments as $shipment)
     {
       $s = new Shipment($shipment, $transaction_id, $customer_id);
-      $this->shipments->push($s->get());
+      $this->shipments->push($s);
     }
 
   }

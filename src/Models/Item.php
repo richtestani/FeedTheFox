@@ -9,6 +9,37 @@ class Item implements iModel {
 
     protected $item;
 
+    protected $base_price;
+    protected $code;
+    protected $date_created;
+    protected $date_modified;
+    protected $delivery_type;
+    protected $discount_details;
+    protected $discount_name;
+    protected $discount_type;
+    protected $downloadable_url;
+    protected $expires;
+    protected $height;
+    protected $image;
+    protected $is_future_line_item;
+    protected $item_category_uri;
+    protected $length;
+    protected $name;
+    protected $parent_code;
+    protected $price;
+    protected $quantity;
+    protected $quantity_max;
+    protected $quantity_min;
+    protected $shipto;
+    protected $sub_token_url;
+    protected $subscription_end_date;
+    protected $subscription_frequency;
+    protected $subscription_next_transaction_date;
+    protected $subscription_start_date;
+    protected $url;
+    protected $weight;
+    protected $width;
+
     public function __construct($collection)
     {
         $this->item = $collection;
@@ -72,7 +103,7 @@ class Item implements iModel {
 
         foreach($this->options->get() as $t => $opt) {
 
-            if(array_key_exists('product_option_value', $opt)) {
+            if(array_key_exists(protected $ product_option_value; $opt)) {
                 $values[] = $opt['product_option_value'];
             }
         }

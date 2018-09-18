@@ -15,10 +15,10 @@ class Shipping implements iModel {
     public function __construct($processor)
     {
 
-        $this->shipping = new Collection($processor->get());
+        $shipping = $processor->get();
 
-        foreach($this->shipping as $shipment) {
-            $this->shipments[] = $shipment->get();
+        foreach($shipping as $shipment) {
+            $this->shipping[] = $shipment->get();
         }
 
     }
@@ -67,7 +67,7 @@ class Shipping implements iModel {
 
     public function totalShipments()
     {
-        return $this->shipping->count();
+        return count($this->shipping);
     }
 
 }
