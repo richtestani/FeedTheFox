@@ -58,4 +58,9 @@ class Shipping implements iModel {
         return ($ship_total < $amount) ? true : false;
     }
 
+    public function totalShipments()
+    {
+        return $this->shipping->count();
+    }
+
 }

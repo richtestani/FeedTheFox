@@ -21,11 +21,6 @@ class Shipments {
 
   }
 
-  public function totalShipments()
-  {
-    return $this->shipments->count();
-  }
-
   public function get()
   {
     return $this->shipments;
