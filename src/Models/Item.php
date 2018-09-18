@@ -103,7 +103,7 @@ class Item implements iModel {
 
         foreach($this->options->get() as $t => $opt) {
 
-            if(array_key_exists(protected $ product_option_value; $opt)) {
+            if(array_key_exists('product_option_value', $opt)) {
                 $values[] = $opt['product_option_value'];
             }
         }
