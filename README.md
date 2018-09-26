@@ -7,10 +7,10 @@ Use this package to handle post processing with FoxyCart.
 If you use [FoxyCart](https://foxy.io) for your commerce website, you may be using the datafeed feature to further process and order.
 
 For stores that require post processing orders (recording the order, emailing customers based on actions, etc.),
-FeedTheFox makes it easier to work with the genereated feeds. 
+FeedTheFox makes it easier to work with the generated feeds.
 
-Currenly works with their XML feed with a sinle transaction.
-*Updated will include subcriptions and mult-ship feeds.*
+Currenly works with their XML feed with a single transaction.
+*Updated will include subcriptions and multi-ship feeds.*
 
 Install with composer, or download this package.
 It does require laravel/collection to work.
@@ -32,8 +32,8 @@ if( $datafeed->order->transactionDeclined() ) {
 
 ```
 
-FeedTheFox breaks the data feed into logical groups, making it easier to 
-work with and offers some helpful methods for each. Each group can be accessd from the instanced object,
+FeedTheFox breaks the data feed into logical groups, making it easier to
+work with and offers some helpful methods for each. Each group can be accessed from the instanced object,
 in this case `$datafeed`
 
 
@@ -43,17 +43,6 @@ in this case `$datafeed`
 * Discounts
 * Custom Fields
 * Shipping
+* Payments (JSON only)
 
-For any object, you can retrieve a single piece of data, use the "get" method and pass in the name of the property. 
-For example, to get the current transation id,
-
-```
-$datafeed->order->get('id');
-```
-
-To get the name of discount:
-
-```
-$datafeed->discounts->get('name');
-```
 Read more in the [docs](https://richtestani.github.io/FeedTheFox/)
