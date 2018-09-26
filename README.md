@@ -4,16 +4,16 @@ A FoxyCart Datafeed Package
 
 Use this package to handle post processing with FoxyCart.
 
-If you use [FoxyCart](https://foxy.io) for your commerce website, you may be using the datafeed feature to further process and order.
+If you use [FoxyCart](https://foxy.io) for your commerce website, you may be using the datafeed feature to further process your orders.
 
 For stores that require post processing orders (recording the order, emailing customers based on actions, etc.),
-FeedTheFox makes it easier to work with the generated feeds.
+FeedTheFox makes it easier to work with the generated feeds by taking care of the heavy lifting of parsing the very complex XML & JSON files.
 
-Currenly works with their XML feed with a single transaction.
+Currently works with their XML datafeed feed & JSON Web Hook Integration for single transactions.
 *Updated will include subcriptions and multi-ship feeds.*
 
 Install with composer, or download this package.
-It does require laravel/collection to work.
+It does require laravel/collection to work & PHP 7.1 or greater.
 
 ```
 composer require richtestani/feedthefox
