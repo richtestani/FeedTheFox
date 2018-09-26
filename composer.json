@@ -1,7 +1,7 @@
 {
     "name": "richtestani/feedthefox",
     "type": "package",
-    "description": "A easy way to work with FoxyCarts datafeed.",
+    "description": "An easy way to work with FoxyCart's datafeed.",
     "keywords": ["foxycart", "post-processing"],
     "homepage": "https://github.com/richtestani/FeedTheFox",
     "license": "MIT",
@@ -10,7 +10,7 @@
         {
             "name": "Richard Testani",
             "email": "richtestani@mac.com",
-            "homepage": "http://richtestani.com",
+            "homepage": "https://richtestani.com",
             "role": "Developer"
         }
     ],
