@@ -40,7 +40,7 @@ class Transaction {
     'subscription_start_date',
     'url',
     'weight',
-    'width',
+    'width'
   ];
 
   public function __construct($item, $transaction_id, $customer_id)
@@ -82,6 +82,16 @@ class Transaction {
   private function handleDetailCategory($category)
   {
     $this->category = new TransactionCategory($category);
+  }
+  
+  public function getCategory()
+  {
+  	return $this->category;
+  }
+  
+  public function getOptions()
+  {
+  	return $this->options;
   }
 
 }
