@@ -62,6 +62,7 @@ class Transaction {
     }
 
     $item['transaction_detail_options'] = $this->options;
+    $item['item_category'] = $this->category;
 
     $this->item = new Collection($item);
 
@@ -82,16 +83,6 @@ class Transaction {
   private function handleDetailCategory($category)
   {
     $this->category = new TransactionCategory($category);
-  }
-  
-  public function getCategory()
-  {
-  	return $this->category;
-  }
-  
-  public function getOptions()
-  {
-  	return $this->options;
   }
 
 }

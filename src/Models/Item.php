@@ -39,11 +39,14 @@ class Item implements iModel {
     protected $url;
     protected $weight;
     protected $width;
+    protected $options;
+    protected $category;
 
     public function __construct($collection)
     {
         $this->item = $collection;
         $this->options = $this->item->get('transaction_detail_options');
+        $this->category = $this->item->get('item_category');
     }
 
     public function get($property = null)
@@ -68,6 +71,11 @@ class Item implements iModel {
     public function options()
     {
         return $this->options;
+    }
+    
+    public function category()
+    {
+        return $this->category;
     }
 
     public function hasOptions()
