@@ -120,6 +120,14 @@ class Item implements iModel {
 
     }
     
+    public function hasCategoryCode($code)
+    {
+    
+    	$categories = $this->category();
+    	//print_r($categories);
+    	return ( $categories->get()->get('code') == $code ); 
+    }
+    
     public function categoryNames()
     {
         //get just the collection
