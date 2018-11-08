@@ -99,7 +99,6 @@ class Item implements iModel {
 
         return $names;
 
-
     }
 
     public function optionValue()
@@ -118,6 +117,24 @@ class Item implements iModel {
 
         return $values;
 
+
+    }
+    
+    public function categoryNames()
+    {
+        //get just the collection
+        $category = $this->category->get();
+
+        $names = [];
+
+        foreach($category->get() as $t => $cat) {
+
+            if(array_key_exists('name', $cat)) {
+                $names[] = $cat['name'];
+            }
+        }
+
+        return $names;
 
     }
 

@@ -47,10 +47,15 @@ class TransactionCategory {
               $c[$prop] = $category[$prop];
             }
         }
-
+		
         $this->category = new Collection($c);
 
 
+    }
+    
+    public function numberOfCategories()
+    {
+    	return $this->category->count();
     }
 
 

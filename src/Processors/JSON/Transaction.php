@@ -53,14 +53,20 @@ class Transaction {
       }
     }
 
+    $trans_options = [];
+	$trans_category = [];
+	
     if(isset($item['_embedded']['fx:item_options'])) {
-      $this->handleDetailOptions($item['_embedded']['fx:item_options']);
+      $trans_options = $item['_embedded']['fx:item_options'];
     }
 
     if(isset($item['_embedded']['fx:item_category'])) {
-      $this->handleDetailCategory($item['_embedded']['fx:item_category']);
+      $trans_category = $item['_embedded']['fx:item_category'];
     }
-
+	
+	$this->handleDetailOptions($trans_options);
+	$this->handleDetailCategory($trans_category);
+	
     $item['transaction_detail_options'] = $this->options;
     $item['item_category'] = $this->category;
 
