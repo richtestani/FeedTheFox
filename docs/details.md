@@ -3,10 +3,6 @@
 The details model contains everything related to your products.
 The models contains an array of items, each with a set of product options.
 
-The following properties are available with the `get()` method.
-
-* transaction
-
 The details model is the most complex because this reflects a line item as an object rather than individual items.
 Each item within an iteration would be an item to output.
 
@@ -18,8 +14,11 @@ foreach($details->get() as $item) {
   //Item object
   $product = $item->get('product_name');
   $code = $item->get('product_code');
+  
+  echo 'There are '.$product->numItems().' in this order.';
 
   if($item->hasOptions()) {
+  
     $options = $item->options();
 
     foreach($options as $option) {
@@ -28,6 +27,7 @@ foreach($details->get() as $item) {
   }
 
 }
+```
 
 
 The following methods are available to the detail model.
@@ -51,7 +51,7 @@ Returns true if there are any options in this order
 ```
 numItems()
 ```
-Returns an intger of the number of items in this order
+Returns an integer of the number of items in this order
 
 ```
 numOptions()

@@ -4,7 +4,7 @@ The discounts model provides a set of properties and methods to help better dete
 Use the `get` method to retriveve a poroptry or set of proerty values.
 
 ```
-$discounts = $datafeed->discounts>get();
+$discounts = $datafeed->discounts->get();
 ```
 The above will return a collection of data.
 
