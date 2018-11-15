@@ -20,9 +20,6 @@ class Discounts {
 
         }
 
-        $collection['transaction_id']                  = $transaction_id;
-        $collection['customer_id']                     = $customer_id;
-
         $this->discount = new Collection($collection);
 
     }
