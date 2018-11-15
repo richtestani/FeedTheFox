@@ -12,16 +12,26 @@ class Discounts {
     {
 
         $discounts = [];
+        
+        $this->transaction_id = $transaction_id;
+        
+        $this->customer_id = $customer_id;
 
         foreach($transaction as $discount) {
-
-          $discount = new Discount($discount, $transaction_id, $customer_id);
+		  
+          $discount = new Discount($discount);
           $discounts[] = $discount->get();
 
         }
 
-        $this->discount = new Collection($collection);
+        $this->discount = new Collection($discounts);
 
+    }
+    
+    public function getId($type = 'transaction')
+    {
+    	$prop = $type.'_id';
+    	return $this->$prop;
     }
 
 
