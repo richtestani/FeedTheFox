@@ -30,8 +30,8 @@ hasDiscount()
 Returns true or false if the order has discount data
 
 ```
-hasCode($code)
+totalDiscountAmount($code)
 ```
-Returns true or false if the provided code is in the order
+Returns float value of total order discount. Usually expressed something like: `-3.60`
 
 {% include menu.md %}
