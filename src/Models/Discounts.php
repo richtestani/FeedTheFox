@@ -9,12 +9,22 @@ use Illuminate\Support\Collection;
 class Discounts implements iModel {
 
     protected $discounts;
+    
+    protected $total;
 
     
     public function __construct($processor)
     {
         
         $this->discounts = new Collection($processor->get());
+        
+        $total = 0;
+        
+        foreach($this->discounts as $d) {
+        	$total += $d->get('amount');
+        }
+        
+        $this->total = number_format($total, 2);
         
     }
     
@@ -55,6 +65,10 @@ class Discounts implements iModel {
         return $coupon;
     }
     
+    public function totalDiscountAmount()
+    {
+    	return $this->total;
+    }
     
 
 }
