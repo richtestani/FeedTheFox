@@ -15,16 +15,14 @@ Add the configuration to your environment file.
 
 FOXYCART_API = apikey_mygeneratedkey
 
-Because the datafeed doesn't really require any output to a user, it
-should be fed into a request without too much overhead or output.
-
 add a route in your `routes/web.php` file
 
 ```
+//must be post
 Route::post('feedthefox', 'FoxyCartController@feedthefox');
 ```
 
-then within laravel artisan or by hand, create the controller
+Then within laravel artisan or by hand, create the controller
 
 ```
 php artisan make:controller FoxyCartController
@@ -36,7 +34,7 @@ Open your new controller and add this after the namespace.
 use RichTestani\FeedTheFox\DataFeed;
 ```
 
-The in the controller, create a method
+Then within the controller, create a method
 
 ```
 
