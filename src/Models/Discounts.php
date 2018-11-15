@@ -11,12 +11,20 @@ class Discounts implements iModel {
     protected $discounts;
     
     protected $total;
+    
+    protected $transaction_id;
+    
+    protected $customer_id;
 
     
     public function __construct($processor)
     {
         
         $this->discounts = new Collection($processor->get());
+        
+        $this->transaction_id = $processor->getId('transaction');
+        
+        $this->customer_id = $processor->getId('customer');
         
         $total = 0;
         
@@ -42,8 +50,6 @@ class Discounts implements iModel {
         
         return $this->discounts->firstWhere($property);
         
-        
-        
     }
     
     public function hasDiscount()
@@ -68,6 +74,12 @@ class Discounts implements iModel {
     public function totalDiscountAmount()
     {
     	return $this->total;
+    }
+    
+    public function getId($type = 'transaction')
+    {
+    	$prop = $type.'_id';
+    	return $this->$prop;
     }
     
 

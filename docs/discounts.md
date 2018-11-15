@@ -34,4 +34,9 @@ totalDiscountAmount($code)
 ```
 Returns float value of total order discount. Usually expressed something like: `-3.60`
 
+```
+getId($type)
+```
+Returns a string containing either the transaction id or customer id. Define which in the type. Default is transaction id
+
 {% include menu.md %}
