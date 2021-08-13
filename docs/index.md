@@ -2,24 +2,25 @@
 
 A FoxyCart Datafeed Package for PHP
 
-Use this package to handle post processing with FoxyCart.
+A JSON & XML webhook post processing library.
 
-If you use [FoxyCart](https://foxy.io) for your commerce website, you may be doing post-processing of order
-using their DataFeed. 
+If you use [FoxyCart](https://foxy.io) for your commerce website, often you'll want to record the transaction on your own server, or do something custom that FoxyCart doesn't do.
 
-For stores that require post processing orders (recording the order, emailing customers based on actions)...
-this package makes it easier to work with the datafeed.
-
-Install with composer, or download this package.
-It does require laravel/collection to work.
-
-With this package you can run tests on your own machine, or use it to process live transactions.
+FeedTheFox recieves your transactions and makes it easy to pluck the content you need from either the JSON webhook or the XML Datafeed. It's built around Laravel libraries, but does not require the framework.
 
 ### This does not currently support multi-store or subscriptions, but will in updated versions.
+
+h3. How to set up the XML Datafeed.
+
+In your FoxyCart admin, click the 'Advanced' link under the STORE heading. Check the 'would you like the enable your store datafeed', then enter where your php file is located. For example, if your site is coolshop.com, you might have your script at `coolshop.com/integrations/datafeed.php`
+
+On your server, make sure you have composer installed then run the command below on your terminal.
 
 ```
 composer require richtestani/feedthefox:dev-master
 ```
+
+In your php file, copy the code below and paste it. In the FoxyCart admin, where you turned on the datafeed, copy the store secret and replace the 'my-api-key' with its contents.
 
 ```
 use RichTestani\FeedTheFox\DataFeed;
