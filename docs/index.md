@@ -65,7 +65,7 @@ foreach($names as $name) {
 ```
 
 FeedTheFox breaks the data feed into logical groups, making it easier to 
-work with and offers some helpful methods for each. Each group can be accessd from the instanced object,
+work with and offers some helpful methods for each. Each group can be accessed from the instanced object,
 in this case `$datafeed`
 
 
@@ -75,6 +75,8 @@ in this case `$datafeed`
 * Discounts
 * Custom Fields
 * Shipping
+* Payments
+* Taxes
 
 For any object, you can retrieve a single piece of data, use the "get" method and pass in the name of the property. 
 For example, to get the current transation id,
