@@ -98,12 +98,14 @@ class JSON implements iDataProcessor {
         //Parse the JSON into logical portions
 
         $custom_fields = (isset($this->transaction['_embedded']['fx:custom_fields'])) ? $this->transaction['_embedded']['fx:custom_fields'] : [];
+		
         $applied_taxes = (isset($this->transaction['_embedded']['fx:applied_taxes'])) ? $this->transaction['_embedded']['fx:applied_taxes'] : [];
         $discounts = (isset($this->transaction['_embedded']['fx:discounts'])) ? $this->transaction['_embedded']['fx:discounts'] : []; 
 
         $customer = new JSON\Customer($this->transaction);
         $order = new JSON\Order($this->transaction, $customer->getId());
         $details = new JSON\Transactions($this->transaction['_embedded']['fx:items'], $order->getId(), $customer->getId());
+		
         $custom = new JSON\CustomFields($custom_fields, $order->getId(), $customer->getId());
         $shipping = new JSON\Shipments($this->transaction['_embedded']['fx:shipments'], $order->getId(), $customer->getId());
         $taxes = new JSON\Taxes($applied_taxes, $order->getId(), $customer->getId());

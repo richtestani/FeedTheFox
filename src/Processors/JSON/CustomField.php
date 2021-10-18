@@ -33,10 +33,7 @@ class CustomField {
 
         foreach($this->properties as $prop => $map) {
 
-          if(in_array($map, $transaction)) {
-            $customfield[$prop] = $transaction[$map];
-          }
-
+          $customfield[$prop] = $transaction[$map];
 
         }
 
@@ -46,8 +43,12 @@ class CustomField {
 
 
 
-    public function get()
+    public function get($property = null)
     {
+
+		if(in_array($property, array_keys($this->properties))) {
+			return $this->custom_field->get($property);
+		}
         return $this->custom_field;
     }
 }

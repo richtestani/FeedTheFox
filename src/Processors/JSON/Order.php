@@ -34,7 +34,7 @@ class Order {
       'tax_total'  => 'total_tax',
       'shipping_total' => 'total_shipping',
       'order_total' => 'total_price',
-	  'currency_code' => 'currency',
+	  'currency_code' => 'currency_code',
 	  'currency_symbol' => 'currency_symbol',
 
       'shipping_first_name' => 'shipping_first_name',

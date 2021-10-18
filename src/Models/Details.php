@@ -12,6 +12,7 @@ class Details implements iModel {
     protected $options;
     protected $numOptions = 0;
     protected $numItems = 0;
+	protected $totalQty = 0;
 
 
     public function __construct($processor)
@@ -36,6 +37,7 @@ class Details implements iModel {
             $d->put('transaction_detail_options', $option);
             $detail =  $d;
             $this->numItems++;
+			$this->totalQty += $d->quantity;
 
             $this->details[] = new Item($detail);
         }
@@ -51,6 +53,11 @@ class Details implements iModel {
     {
         return (is_null($property)) ? $this->details : $this->details->get($property);
     }
+	
+	public function totalQty()
+	{
+		
+	}
 
     public function numItems()
     {
