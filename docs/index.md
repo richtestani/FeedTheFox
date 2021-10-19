@@ -33,6 +33,9 @@ $config = [
 //new instance
 $datafeed = new DataFeed($config);
 
+//if you are using the JSON webhook, pass in the string 'json' as a second parameter
+$datafeed = new DataFeed($config, 'json');
+
 //pass in the post array
 $datafeed->process();
 

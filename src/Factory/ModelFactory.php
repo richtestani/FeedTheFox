@@ -13,20 +13,20 @@ class ModelFactory {
 
     $ns = "\\RichTestani\\FeedTheFox\Models\\".$model;
 
-
     try {
 
       $class = new $ns($data);
+	  return $class;
 
     } catch (\Exception $e) {
 
         echo 'Caught exception: ',  $e->getMessage(), "\n";
+		exit();
 
     }
 
-    return $class;
-
-
+	return null;
+	
   }
 
 }

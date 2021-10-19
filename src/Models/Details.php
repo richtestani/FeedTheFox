@@ -37,7 +37,7 @@ class Details implements iModel {
             $d->put('transaction_detail_options', $option);
             $detail =  $d;
             $this->numItems++;
-			$this->totalQty += $d->quantity;
+			$this->totalQty += (property_exists('quantity', $d)) ? $d->quantity : 1;
 
             $this->details[] = new Item($detail);
         }
